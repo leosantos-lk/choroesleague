@@ -614,9 +614,10 @@
       <h2>Gerenciar Participantes</h2>
       <div class="form-group admin-only" style="margin-top:15px;">
         <input type="text" id="p-name" placeholder="Nome do jogador...">
-        <label class="file-label" for="p-img">📷 Foto PNG/Imagem <input type="file" id="p-img" accept="image/png, image/jpeg, image/*" onchange="previewFileName('p-img', 'p-img-label')"></label>
+        <label class="file-label" for="p-img">📷 Foto PNG <input type="file" id="p-img" accept="image/png, image/jpeg, image/*" onchange="previewFileName('p-img', 'p-img-label')"></label>
         <span id="p-img-label" style="font-size:0.8rem; color:var(--cyan-neon);"></span>
         <button class="btn-action" onclick="addPlayer()">Adicionar</button>
+        <button class="btn-action" style="background:#111; border:1px solid var(--gold-primary); color:var(--gold-primary);" onclick="loadDefaultPlayers()">🔄 Base Oficial</button>
       </div>
       <div class="grid-cards" id="players-list"></div>
     </div>
@@ -876,7 +877,8 @@
       { id: 11, name: 'Inter de Milão', img: 'https://upload.wikimedia.org/wikipedia/commons/0/05/FC_Internazionale_Milano_2021.svg' }
     ];
 
-    let masterPlayers = [...DEFAULT_PLAYERS]; let masterTeams = [...DEFAULT_TEAMS];
+    let masterPlayers = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); 
+    let masterTeams = JSON.parse(JSON.stringify(DEFAULT_TEAMS));
     let players = []; let teams = []; let matches = []; let selectedRound = 0;
     let playoffData = { semi1: null, semi2: null, final: null };
     let hallOfFame = []; let currentChampion = null;
@@ -899,13 +901,15 @@
 
     function applyAppState(parsedData) {
       if (!parsedData) return;
-      masterPlayers = [...DEFAULT_PLAYERS];
-      masterTeams = (parsedData.masterTeams && parsedData.masterTeams.length) ? parsedData.masterTeams : [...DEFAULT_TEAMS];
+      masterPlayers = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); // Garantir manter integridade base
+      masterTeams = (parsedData.masterTeams && parsedData.masterTeams.length) ? parsedData.masterTeams : JSON.parse(JSON.stringify(DEFAULT_TEAMS));
+      
       players = (parsedData.players && parsedData.players.length) ? parsedData.players.map(p => {
         const def = DEFAULT_PLAYERS.find(d => d.id === p.id || d.name.toUpperCase() === p.name.toUpperCase());
         return def ? { ...p, img: def.img } : p;
-      }) : [...DEFAULT_PLAYERS];
-      teams = (parsedData.teams && parsedData.teams.length) ? parsedData.teams : [...masterTeams];
+      }) : JSON.parse(JSON.stringify(DEFAULT_PLAYERS));
+      
+      teams = (parsedData.teams && parsedData.teams.length) ? parsedData.teams : JSON.parse(JSON.stringify(masterTeams));
       matches = parsedData.matches || [];
       playoffData = parsedData.playoffData || { semi1: null, semi2: null, final: null };
       hallOfFame = parsedData.hallOfFame || [];
@@ -1001,8 +1005,8 @@
 
     async function initApp() {
       await loadData();
-      if (players.length === 0) players = [...DEFAULT_PLAYERS];
-      if (teams.length === 0) teams = [...DEFAULT_TEAMS];
+      if (players.length === 0) players = JSON.parse(JSON.stringify(DEFAULT_PLAYERS));
+      if (teams.length === 0) teams = JSON.parse(JSON.stringify(DEFAULT_TEAMS));
       
       const startTabId = isPublicMode ? 'tab3' : 'tab1';
       openTab(startTabId);
@@ -1082,6 +1086,25 @@
       if (!isPlayoff) updateScore(matchId, pNum, val); else updatePlayoffScore(stage, pNum, val, isPenalty);
     }
 
+    /* RESTAURAÇÃO DAS BASES PARA NÃO PERDER DADOS EXCLUÍDOS/EDITADOS NO LOCAL STORAGE */
+    function loadDefaultPlayers() { 
+      if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; 
+      players = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); 
+      masterPlayers = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); 
+      saveData(); 
+      renderPlayers(); 
+      showToast("👤 Base Restaurada (9 jogadores)!"); 
+    }
+
+    function loadDefaultTeams() { 
+      if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; 
+      teams = JSON.parse(JSON.stringify(DEFAULT_TEAMS)); 
+      masterTeams = JSON.parse(JSON.stringify(DEFAULT_TEAMS)); 
+      saveData(); 
+      renderTeams(); 
+      showToast("🛡️ Base Restaurada (11 times)!"); 
+    }
+
     function addPlayer() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       const name = document.getElementById('p-name').value.trim(); const imgInput = document.getElementById('p-img');
@@ -1119,7 +1142,6 @@
     }
     function removePlayer(id) { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; players = players.filter(x => x.id !== id); saveData(); renderPlayers(); showToast("👤 Removido!"); }
     
-    function loadDefaultTeams() { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; teams = JSON.parse(JSON.stringify(masterTeams)); saveData(); renderTeams(); showToast("🛡️ Restaurada!"); }
     function addTeam() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       const name = document.getElementById('t-name').value.trim(); const imgInput = document.getElementById('t-img');
@@ -1409,11 +1431,9 @@
 
         wrapper.classList.remove('final-epic-spin');
         
-        // Ativa a animação de salto premium e projeção tridimensional orgânica
         wrapper.classList.add(isFinal ? 'final-epic-spectacle-animation' : 'recede-3d-animation');
         overlay.classList.add('overlay-fade-out');
 
-        // Se for final, as caixas da roleta somem gradualmente deixando só os emblemas projetados
         if (isFinal) {
             setTimeout(() => {
                 container.classList.add('hide-slots');
@@ -1439,7 +1459,6 @@
                     coreColor = `rgba(220, 255, 255, ${currentAlpha})`; 
                 }
 
-                // Efeito de expansão dos raios (premium feeling) na dissipação
                 let glowExpansion = (1 - currentAlpha) * 60;
                 const numBolts = isFinal ? 14 : 10; 
                 
@@ -1492,7 +1511,6 @@
             }
             ctx.restore();
 
-            // Dissipação natural
             alpha -= isFinal ? 0.012 : 0.015; 
             
             if (alpha > -0.2) { 
@@ -1575,7 +1593,7 @@
           flashedCard.classList.add(addClass);
           setTimeout(() => {
               if(flashedCard) flashedCard.classList.remove(addClass);
-          }, 3000); // 3s matches the total css duration effectively
+          }, 3000);
       }
     }
 

@@ -118,7 +118,6 @@
     .auth-msg { margin-top: 18px; font-size: 0.9rem; font-weight: bold; min-height: 20px; }
 
     .hidden { display: none !important; }
-    #lightning-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 998; display: none; }
 
     header {
       background: linear-gradient(145deg, rgba(25, 26, 38, 0.9) 0%, rgba(10, 11, 18, 0.95) 100%);
@@ -205,7 +204,7 @@
     #hall-of-fame-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
 
     .item-card { background: linear-gradient(145deg, rgba(22, 24, 38, 0.9), rgba(12, 13, 22, 0.95)); border: 1px solid var(--border-gold); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: all 0.3s ease; box-shadow: var(--shadow-3d); position: relative; overflow: hidden; }
-    .item-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); transition: 0.5s; }
+    .item-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,25,0.08), transparent); transition: 0.5s; }
     .item-card:hover::before { left: 100%; }
     .item-card:hover { transform: translateY(-5px) scale(1.02); border-color: var(--gold-primary); box-shadow: 0 10px 25px var(--gold-glow); }
     .item-info { display: flex; align-items: center; gap: 12px; overflow: hidden; }
@@ -240,7 +239,7 @@
     .match-main { display: flex; justify-content: space-between; align-items: center; gap: 6px; position: relative; z-index: 2; width: 100%; }
     .team-box { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; position: relative; padding: 4px 6px; border-radius: 10px; overflow: hidden; transition: background 0.3s; }
     .team-box.right { justify-content: flex-end; text-align: right; }
-    .club-watermark { position: absolute; top: 50%; transform: translateY(-50%) scale(1); height: 130%; width: auto; opacity: 0.25; pointer-events: none; user-select: none; z-index: 1; filter: contrast(60%) brightness(1.2) drop-shadow(0 0 10px rgba(0,242,254,0.3)); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.35s ease; }
+    .club-watermark { position: absolute; top: 50%; transform: translateY(-50%) scale(1); height: 130%; width: auto; opacity: 0.25; pointer-events: none; user-select: none; z-index: 0; filter: contrast(60%) brightness(1.2) drop-shadow(0 0 10px rgba(0,242,254,0.3)); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.35s ease; }
     .match-card:hover .club-watermark { opacity: 0.45; transform: translateY(-50%) scale(1.08); filter: contrast(60%) brightness(1.3) drop-shadow(0 0 15px var(--gold-primary)); }
     .team-box:hover .club-watermark { opacity: 0.75; transform: translateY(-50%) scale(1.15); filter: contrast(150%) brightness(1.4) drop-shadow(0 0 20px var(--gold-primary)); }
     .team-box .player-avatar, .team-box div { position: relative; z-index: 2; }
@@ -252,7 +251,7 @@
 
     .score-container { display: flex; flex-direction: column; align-items: center; gap: 2px; position: relative; z-index: 2; flex-shrink: 0; }
     .score-row { display: flex; align-items: center; gap: 4px; }
-    .score-input-text { font-family: 'Orbitron', sans-serif; width: 38px; height: 34px; text-align: center; background: #000; border: 1px solid var(--gold-primary); color: var(--gold-primary); font-weight: bold; font-size: 1.05rem; border-radius: 6px; outline: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.9), 0 0 4px var(--gold-glow); }
+    .score-input-text { font-family: 'Orbitron', sans-serif; width: 38px; height: 34px; text-align: center; background: #000; border: 1px solid var(--gold-primary); color: var(--gold-primary); font-weight: bold; font-size: 1.05rem; border-radius: 6px; outline: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.9), 0 0 4px var(--gold-glow); transition: border-color 0.3s, box-shadow 0.3s; }
     .score-input-text:focus { border-color: var(--cyan-neon); box-shadow: 0 0 10px var(--cyan-glow), inset 0 2px 4px rgba(0,0,0,0.9); }
     .score-vs { font-family: 'Orbitron', sans-serif; color: var(--gold-primary); font-weight: bold; font-size: 0.8rem; text-shadow: 0 0 6px var(--gold-glow); }
     
@@ -262,7 +261,8 @@
     .match-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px; position: relative; z-index: 2; gap: 8px; flex-wrap: wrap; }
     .btn-draw-single { background: rgba(0, 242, 254, 0.08); border: 1px solid var(--cyan-neon); color: var(--cyan-neon); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.3s; }
     .btn-draw-single:hover { background: var(--cyan-neon); color: #000; box-shadow: 0 0 10px var(--cyan-glow); }
-    .btn-draw-final { font-size: 0.82rem; padding: 6px 14px; }
+    .btn-draw-final { font-size: 0.82rem; padding: 6px 14px; border-color: var(--gold-primary); color: var(--gold-primary); background: rgba(245, 175, 25, 0.08); }
+    .btn-draw-final:hover { background: var(--gold-primary); color: #000; box-shadow: 0 0 15px var(--gold-glow); }
 
     .playoff-section { background: rgba(8, 8, 12, 0.8); border: 1px solid var(--border-gold); border-radius: 14px; padding: 18px; margin-bottom: 20px; box-shadow: var(--shadow-3d); }
     .table-responsive { overflow-x: auto; width: 100%; border-radius: 10px; }
@@ -307,18 +307,18 @@
     .toast-msg.show { opacity: 1; transform: translateY(0); }
 
     /* =======================================================
-        ESTILIZAÇÃO DA ROLETA DE CASSINO (PREMIUM / ELEGANT)
-        ======================================================= */
+        ESTILIZAÇÃO DA ROLETA DE CASSINO 4K & 3D (EFEITOS CINEMÁTICOS DE RAIOS)
+       ======================================================= */
     
     .roulette-modal-overlay {
         display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-        background: rgba(3, 3, 6, 0.7);
+        background: rgba(3, 3, 6, 0.9);
         backdrop-filter: blur(8px);
         z-index: 999; justify-content: center; align-items: center; overflow: hidden;
     }
 
     @keyframes fadeOverlayOut {
-        0% { background: rgba(3, 3, 6, 0.7); backdrop-filter: blur(8px); }
+        0% { background: rgba(3, 3, 6, 0.9); backdrop-filter: blur(8px); }
         100% { background: rgba(3, 3, 6, 0); backdrop-filter: blur(0px); }
     }
     .overlay-fade-out {
@@ -333,7 +333,7 @@
         text-align: center;
         z-index: 2; 
         width: 100%;
-        max-width: 700px;
+        max-width: 750px;
         position: relative;
         transform-style: preserve-3d;
     }
@@ -345,34 +345,97 @@
         gap: 30px;
         margin-top: 20px;
         transform-style: preserve-3d;
+        position: relative;
     }
-    
-    .slot-column {
-        flex: 1;
-        background: rgba(5, 10, 15, 0.65);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(245, 175, 25, 0.4); 
-        border-radius: 16px;
-        padding: 25px 15px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 0 20px rgba(245, 175, 25, 0.15);
+
+    .vs-center-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
-        min-height: 180px;
+        justify-content: center;
+        position: relative;
+        z-index: 5;
+    }
+
+    .final-center-trophy {
+        display: block;
+        margin: 0 auto 5px auto;
+        height: 140px;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 0 30px rgba(245, 175, 25, 0.9)) drop-shadow(0 0 60px rgba(255, 221, 103, 0.6));
+        animation: floatTrophy3D 2s ease-in-out infinite alternate;
+        transform-style: preserve-3d;
+    }
+
+    @keyframes floatTrophy3D {
+        0% { transform: translateZ(40px) translateY(0) scale(1) rotateY(-5deg); }
+        100% { transform: translateZ(70px) translateY(-10px) scale(1.1) rotateY(5deg); }
+    }
+
+    .final-title-3d {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 900;
+        font-size: 2.6rem;
+        color: #fff2a8;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        text-shadow: 0 1px 0 #d48806, 0 2px 0 #c27a00, 0 3px 0 #a06300, 0 4px 0 #804f00, 0 5px 10px rgba(0,0,0,0.9), 0 0 30px var(--gold-glow);
+        transform: translateZ(40px);
+    }
+
+    .slot-vs.final-vs-3d {
+        font-size: 4rem;
+        color: #fff2a8;
+        text-shadow: 0 1px 0 #d48806, 0 2px 0 #c27a00, 0 3px 0 #a06300, 0 4px 0 #804f00, 0 5px 10px rgba(0,0,0,0.9), 0 0 40px var(--gold-glow);
+    }
+    
+    .semi-title-3d {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 900;
+        font-size: 2.6rem;
+        color: #e0ffff;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        text-shadow: 0 1px 0 #00b4cc, 0 2px 0 #0096ab, 0 3px 0 #00788a, 0 4px 0 #005a69, 0 5px 10px rgba(0,0,0,0.9), 0 0 30px var(--cyan-glow);
+        transform: translateZ(40px);
+    }
+
+    .slot-vs.semi-vs-3d {
+        font-size: 4rem;
+        color: #e0ffff;
+        text-shadow: 0 1px 0 #00b4cc, 0 2px 0 #0096ab, 0 3px 0 #00788a, 0 4px 0 #005a69, 0 5px 10px rgba(0,0,0,0.9), 0 0 40px var(--cyan-glow);
+    }
+
+    .slot-column {
+        flex: 1;
+        background: rgba(5, 10, 15, 0.85);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(245, 175, 25, 0.5); 
+        border-radius: 18px;
+        padding: 25px 15px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.85), inset 0 0 25px rgba(245, 175, 25, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 190px;
         justify-content: center;
         transition: all 0.5s ease;
+        transform: translateZ(20px);
     }
+    
     .slot-column img {
-        width: 90px;
-        height: 90px;
+        width: 95px;
+        height: 95px;
         object-fit: contain;
         margin-bottom: 15px;
-        filter: drop-shadow(0 0 15px rgba(255,255,255,0.25));
-        transition: transform 0.5s ease, filter 0.5s ease;
+        filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
+        transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), filter 0.2s linear;
     }
+    
     .slot-column span {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         font-weight: 800;
         color: #fff;
         text-shadow: 0 2px 5px rgba(0,0,0,0.9);
@@ -387,9 +450,11 @@
         font-weight: 900;
         transform: translateZ(30px);
         transition: opacity 0.5s ease;
+        position: relative;
     }
+
     .player-label-r {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         color: var(--gold-light);
         text-transform: uppercase;
         margin-bottom: 15px;
@@ -399,7 +464,6 @@
         transition: opacity 0.5s ease;
     }
 
-    /* Ocultando orgânicamente as caixas para focar nos emblemas */
     .hide-slots .slot-column {
         background: transparent !important;
         border-color: transparent !important;
@@ -407,80 +471,154 @@
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
     }
-    .hide-slots .slot-vs, .hide-slots .player-label-r, .hide-slots #roulette-title {
-        opacity: 0 !important;
-    }
-    .hide-slots .slot-column span {
-        opacity: 0 !important;
-    }
+    .hide-slots .slot-vs, .hide-slots .player-label-r, .hide-slots #roulette-title { opacity: 0 !important; }
+    .hide-slots .slot-column span { opacity: 0 !important; }
     .hide-slots .slot-column img {
-        transform: scale(1.6);
-        filter: drop-shadow(0 0 45px var(--gold-primary)) brightness(1.2);
+        transform: scale(1.65);
+        filter: drop-shadow(0 0 50px var(--gold-primary)) brightness(1.25);
     }
 
-    /* RECUO E PROJEÇÃO DE ENERGIA TRIDIMENSIONAL - SEMIFINAL */
     @keyframes organicRecede3D {
         0% { transform: scale(1) translateZ(0) rotateX(0deg); opacity: 1; }
-        20% { transform: scale(1.1) translateZ(100px) rotateX(-2deg); opacity: 1; filter: drop-shadow(0 0 60px var(--cyan-neon)); }
-        100% { transform: scale(0.8) translateZ(-50px); opacity: 0; filter: drop-shadow(0 0 100px var(--cyan-neon)); }
+        20% { transform: scale(1.05) translateZ(80px) rotateX(-2deg); opacity: 1; filter: drop-shadow(0 0 40px var(--cyan-neon)); }
+        100% { transform: scale(0.85) translateZ(-80px); opacity: 0; filter: drop-shadow(0 0 60px var(--cyan-neon)); }
     }
-    .recede-3d-animation { animation: organicRecede3D 1.3s cubic-bezier(0.25, 1, 0.3, 1) forwards; }
+    .recede-3d-animation { animation: organicRecede3D 1.5s cubic-bezier(0.25, 1, 0.25, 1) forwards; }
 
-    /* RECUO ÉPICO DA GRANDE FINAL: SALTO DO EMBLEMA E PROJEÇÃO ORGÂNICA */
     @keyframes finalEpicSpectacle3D {
         0% { transform: scale(1) translateZ(0) rotateX(0deg); opacity: 1; }
-        25% { transform: scale(1.2) translateZ(250px) rotateX(5deg); filter: drop-shadow(0 0 80px var(--gold-primary)); opacity: 1; }
-        50% { transform: scale(1.3) translateZ(300px) rotateX(0deg); filter: drop-shadow(0 0 120px #fff); opacity: 0.9; }
-        100% { transform: scale(0.6) translateZ(-100px); opacity: 0; filter: drop-shadow(0 0 0 transparent); }
+        30% { transform: scale(1.15) translateZ(150px) rotateX(3deg); filter: drop-shadow(0 0 60px var(--gold-primary)); opacity: 1; }
+        100% { transform: scale(0.7) translateZ(-100px); opacity: 0; filter: drop-shadow(0 0 0 transparent); }
     }
-    .final-epic-spectacle-animation { animation: finalEpicSpectacle3D 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .final-epic-spectacle-animation { animation: finalEpicSpectacle3D 1.8s cubic-bezier(0.25, 1, 0.25, 1) forwards; }
 
-    /* MATERIALIZAÇÕES E POSSESSÃO DE SOMBRA (CARTÕES DE PARTIDA) */
-    
-    /* Semifinal - Materialização na Partida */
+    /* NOVA ANIMAÇÃO DE MATERIALIZAÇÃO E ABSORÇÃO (SOMBRA TROVÃO) */
     @keyframes organicMaterializeFlash {
-        0% { box-shadow: 0 0 0 transparent; opacity: 0.5; transform: scale(0.98); }
-        50% { box-shadow: 0 0 80px var(--cyan-neon), inset 0 0 40px rgba(0, 242, 254, 0.4); opacity: 1; transform: scale(1.02); border-color: var(--cyan-neon); }
-        100% { box-shadow: var(--shadow-3d); opacity: 1; transform: scale(1); border-color: var(--border-gold); }
+        0% { box-shadow: 0 0 0 transparent; opacity: 0.8; transform: scale(0.98); }
+        10%, 20% { box-shadow: 0 0 120px var(--cyan-neon), inset 0 0 60px rgba(0, 242, 254, 0.8); background: rgba(0, 242, 254, 0.2); transform: scale(1.03); border-color: #fff; }
+        15%, 25% { box-shadow: 0 0 0 transparent; background: transparent; }
+        100% { box-shadow: var(--shadow-3d); opacity: 1; transform: scale(1); border-color: var(--cyan-neon); background: linear-gradient(145deg, rgba(18,20,32,0.95), rgba(8,9,15,0.98)); }
     }
     .organic-materialize { animation: organicMaterializeFlash 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; z-index: 10; }
 
-    /* Grande Final - Materialização Orgânica e Sombra */
     @keyframes finalMaterializeFlash {
-        0% { box-shadow: 0 0 0 transparent; opacity: 0.5; transform: scale(0.95); }
-        40% { box-shadow: 0 0 100px var(--gold-primary), inset 0 0 50px rgba(245, 175, 25, 0.5); opacity: 1; transform: scale(1.04); border-color: #fff; filter: brightness(1.2); }
-        100% { box-shadow: var(--shadow-3d); opacity: 1; transform: scale(1); border-color: var(--gold-primary); filter: brightness(1); }
+        0% { box-shadow: 0 0 0 transparent; opacity: 0.8; transform: scale(0.95); }
+        10%, 20% { box-shadow: 0 0 150px var(--gold-primary), inset 0 0 80px rgba(245, 175, 25, 0.9); background: rgba(245, 175, 25, 0.25); transform: scale(1.05); border-color: #fff; }
+        15%, 25% { box-shadow: 0 0 0 transparent; background: transparent; }
+        100% { box-shadow: var(--shadow-3d); opacity: 1; transform: scale(1); border-color: transparent; }
     }
     .final-organic-materialize { animation: finalMaterializeFlash 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; z-index: 10; }
 
-    /* Watermarks effects behind player names (Possession Mode) */
-    .match-card.final-organic-materialize .club-watermark {
-        animation: possessionWatermark 2.5s ease-out forwards;
-    }
-    .match-card.organic-materialize .club-watermark {
-        animation: semiPossessionWatermark 2s ease-out forwards;
-    }
+    .match-card.final-organic-materialize .club-watermark { animation: possessionWatermark 2.5s ease-out forwards; }
+    .match-card.organic-materialize .club-watermark { animation: semiPossessionWatermark 2.5s ease-out forwards; }
 
     @keyframes possessionWatermark {
-        0% { opacity: 0; transform: translateY(-50%) scale(0.6); filter: drop-shadow(0 0 0 transparent) brightness(2); }
-        40% { opacity: 0.85; transform: translateY(-50%) scale(1.3); filter: drop-shadow(0 0 25px var(--gold-primary)) brightness(1.4); }
-        100% { opacity: 0.25; transform: translateY(-50%) scale(1); filter: drop-shadow(0 0 10px rgba(0,242,254,0.3)) brightness(1.2); }
+        0% { opacity: 0; transform: translateY(-50%) scale(3); filter: drop-shadow(0 0 80px var(--gold-primary)) brightness(5) contrast(200%); }
+        5% { opacity: 1; transform: translateY(-50%) scale(2.5); filter: drop-shadow(0 0 100px var(--gold-primary)) brightness(4) contrast(200%); }
+        10% { opacity: 0; } /* Thunder flicker OFF */
+        15% { opacity: 1; transform: translateY(-50%) scale(2); filter: drop-shadow(0 0 120px #fff) brightness(5); } /* Thunder flicker ON */
+        20% { opacity: 0; } /* Thunder flicker OFF */
+        35% { opacity: 0.9; transform: translateY(-50%) scale(1.2); filter: drop-shadow(0 0 50px var(--gold-primary)) brightness(2); }
+        100% { opacity: 0.25; transform: translateY(-50%) scale(1); filter: drop-shadow(0 0 15px rgba(245,175,25,0.4)) brightness(1.2); }
     }
     @keyframes semiPossessionWatermark {
-        0% { opacity: 0; transform: translateY(-50%) scale(0.6); filter: drop-shadow(0 0 0 transparent); }
-        40% { opacity: 0.65; transform: translateY(-50%) scale(1.2); filter: drop-shadow(0 0 20px var(--cyan-neon)); }
-        100% { opacity: 0.25; transform: translateY(-50%) scale(1); filter: drop-shadow(0 0 10px rgba(0,242,254,0.3)); }
+        0% { opacity: 0; transform: translateY(-50%) scale(3); filter: drop-shadow(0 0 80px var(--cyan-neon)) brightness(5) contrast(200%); }
+        5% { opacity: 1; transform: translateY(-50%) scale(2.5); filter: drop-shadow(0 0 100px var(--cyan-neon)) brightness(4) contrast(200%); }
+        10% { opacity: 0; }
+        15% { opacity: 1; transform: translateY(-50%) scale(2); filter: drop-shadow(0 0 120px #fff) brightness(5); }
+        20% { opacity: 0; }
+        35% { opacity: 0.9; transform: translateY(-50%) scale(1.2); filter: drop-shadow(0 0 50px var(--cyan-neon)) brightness(2); }
+        100% { opacity: 0.25; transform: translateY(-50%) scale(1); filter: drop-shadow(0 0 15px rgba(0,242,254,0.3)) brightness(1.2); }
     }
 
-    /* TREMOR E TENSÃO DURANTE O SORTEIO DA FINAL */
-    @keyframes finalTensionBuild {
-        0% { transform: translateZ(50px) scale(1); }
-        50% { transform: translateZ(70px) scale(1.02); box-shadow: 0 0 40px var(--danger); }
-        100% { transform: translateZ(50px) scale(1); }
+    @keyframes cinematicImpact {
+        0% { transform: scale(1); }
+        40% { transform: scale(1.04); }
+        100% { transform: scale(1); }
     }
-    .final-epic-spin { animation: finalTensionBuild 0.8s ease-in-out infinite; }
+    .cinematic-impact {
+        animation: cinematicImpact 0.6s cubic-bezier(0.25, 1, 0.25, 1) both;
+    }
 
-    /* RESPONSIVIDADE MOBILE */
+    /* ESTILIZAÇÃO ÉPICA E CLEAN PARA A GRANDE FINAL */
+    .final-epic-card {
+        background: transparent !important;
+        border: 1px solid transparent !important;
+        position: relative;
+        padding: 30px 20px !important;
+        border-radius: 20px !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 40px rgba(245, 175, 25, 0.15) !important;
+        z-index: 1;
+        overflow: hidden;
+    }
+    .final-epic-card::before {
+        content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+        background: linear-gradient(45deg, var(--gold-primary), transparent, var(--gold-light), transparent);
+        background-size: 200% 200%;
+        z-index: -1;
+        border-radius: 22px;
+        animation: animateGoldBorder 4s linear infinite;
+        opacity: 0.8;
+    }
+    .final-epic-card::after {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(135deg, rgba(15, 16, 24, 0.98), rgba(8, 9, 12, 1));
+        border-radius: 20px;
+        z-index: -1;
+    }
+    @keyframes animateGoldBorder {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    .final-epic-card .match-main {
+        gap: 15px;
+    }
+    .final-epic-card .team-box {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(245, 175, 25, 0.15);
+        border-radius: 14px;
+        padding: 12px 18px;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    }
+    .final-epic-card .player-title {
+        font-size: 1.25rem;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(255,255,255,0.4);
+    }
+    .final-epic-card .player-avatar {
+        width: 48px !important;
+        height: 48px !important;
+        border-width: 3px !important;
+        box-shadow: 0 0 15px var(--gold-glow) !important;
+    }
+    .final-epic-card .score-input-text {
+        width: 54px; height: 48px;
+        font-size: 1.5rem;
+        background: linear-gradient(to bottom, #111, #000);
+        border: 1px solid var(--gold-primary);
+        box-shadow: 0 0 15px rgba(245, 175, 25, 0.2), inset 0 2px 10px rgba(0,0,0,1);
+    }
+    .final-epic-card .score-vs {
+        font-size: 1.8rem;
+        animation: pulseFinalVS 2s infinite alternate;
+    }
+    @keyframes pulseFinalVS {
+        0% { filter: drop-shadow(0 0 5px var(--gold-primary)); transform: scale(1); }
+        100% { filter: drop-shadow(0 0 20px var(--gold-light)); transform: scale(1.15); }
+    }
+    .final-epic-card .club-watermark {
+        opacity: 0.15; /* Sutil após a absorção na final */
+        filter: contrast(80%) brightness(1.2) drop-shadow(0 0 15px var(--gold-primary));
+        z-index: 0;
+    }
+    .final-bg-watermark {
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 6rem;
+        color: rgba(245, 175, 25, 0.03); white-space: nowrap; pointer-events: none;
+        z-index: 0; letter-spacing: 15px;
+    }
+
     @media (max-width: 768px) {
       body { padding: 8px; }
       header { flex-direction: column; text-align: center; justify-content: center; padding: 16px; margin-bottom: 15px; }
@@ -529,7 +667,6 @@
       .stats-grid { grid-template-columns: 1fr; }
       .history-banner { flex-direction: column; gap: 8px; font-size: 0.85rem; padding: 10px; text-align: center; }
       
-      /* ROLETA MOBILE: Side by Side (Lado a Lado Premium) */
       #roulette-title { font-size: 1.5rem !important; margin-bottom: 15px !important; }
       .slots-container { gap: 8px; flex-direction: row; }
       .slot-column { min-height: 110px; padding: 10px 4px; border-radius: 12px; }
@@ -537,6 +674,13 @@
       .slot-column span { font-size: 0.85rem; }
       .player-label-r { font-size: 0.65rem; margin-bottom: 8px; letter-spacing: 0.5px; }
       .slot-vs { font-size: 1.2rem; transform: translateZ(10px); margin: 0; }
+      .slot-vs.final-vs-3d, .slot-vs.semi-vs-3d { font-size: 2.2rem; }
+      .final-center-trophy { height: 80px; }
+      .final-title-3d, .semi-title-3d { font-size: 1.6rem; letter-spacing: 2px; }
+      
+      .final-epic-card { padding: 20px 10px !important; }
+      .final-epic-card .score-input-text { width: 44px; height: 38px; }
+      .final-bg-watermark { font-size: 3rem; }
     }
   </style>
 </head>
@@ -548,7 +692,7 @@
     <button onclick="exitHistoryMode()">Voltar ao Atual ↩</button>
   </div>
 
-  <!-- TELA DE AUTENTICAÇÃO PREMIUM -->
+  <!-- TELA DE AUTENTICAÇÃO -->
   <div id="auth-screen" class="auth-overlay">
     <div class="auth-card">
       <div class="ps-symbols">
@@ -566,7 +710,6 @@
 
   <!-- CONTEÚDO PRINCIPAL DO SISTEMA -->
   <div id="main-app" class="hidden">
-    <canvas id="lightning-canvas"></canvas>
 
     <button class="btn-logout-discreet" onclick="handleLogout()" title="Sair / Encerrar Sessão">
       <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
@@ -661,7 +804,7 @@
     <!-- ABA 5: GRANDE FINAL -->
     <div id="tab-final" class="tab-content">
       <h2>Grande Final</h2>
-      <div class="playoff-section" style="margin-top:15px;">
+      <div class="playoff-section" style="margin-top:15px; border:none; background:transparent; padding:0; box-shadow:none;">
         <div id="final-container"><p style="color:var(--text-muted); font-style:italic;">Aguardando a definição dos vencedores das semifinais.</p></div>
       </div>
     </div>
@@ -726,7 +869,21 @@
       </div>
     </div>
 
-    <!-- MODAL CAMPEÃO SOBERANO -->
+    <div class="modal-overlay" id="edit-hall-date-modal">
+      <div class="modal">
+        <h3>Editar Data do Título</h3>
+        <input type="hidden" id="edit-hall-id">
+        <div style="margin-bottom: 20px;">
+          <label style="font-size:0.85rem; color:var(--text-muted);">Data e Hora Personalizada:</label>
+          <input type="text" id="edit-hall-date-val" style="width:100%; margin-top:6px;" placeholder="Ex: 07/08/2026 às 21:00">
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px;">
+          <button class="btn-action" style="background:#333; color:#fff;" onclick="closeModal('edit-hall-date-modal')">Cancelar</button>
+          <button class="btn-action" onclick="saveHallDateEdit()">Salvar Data</button>
+        </div>
+      </div>
+    </div>
+
     <div class="modal-overlay" id="champion-modal">
       <canvas id="champion-canvas"></canvas>
       <div class="modal champion-modal" id="modal-box-champion" style="position: relative; z-index: 1002;">
@@ -749,21 +906,26 @@
       </div>
     </div>
 
-    <!-- MODAL DA ROLETA DO SORTEIO -->
+    <!-- MODAL DA ROLETA DO SORTEIO (COM RAIOS CINEMÁTICOS E SEM DESFOQUE) -->
     <div id="roulette-overlay" class="roulette-modal-overlay" style="perspective: 1200px;">
        <div id="roulette-3d-wrapper" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative; transform-style: preserve-3d;">
-            
-            <canvas id="roulette-lightning-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+           
+            <canvas id="roulette-lightning-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0; mix-blend-mode: screen;"></canvas>
             
             <div id="roulette-container" class="roulette-box" style="z-index:2;">
               <h2 id="roulette-title" style="margin-bottom:20px; font-size: 2.2rem; text-shadow: 0 0 15px var(--gold-glow); transform: translateZ(30px);">Sorteando Times...</h2>
-              <div class="slots-container">
+              
+              <div class="slots-container" id="slots-container-el">
                  <div class="slot-column" id="slot1">
                     <div class="player-label-r" id="r-p1-label">JOGADOR 1</div>
                     <img id="r-slot1-img" src="" alt="Escudo" />
                     <span id="r-slot1-name">TIME 1</span>
                  </div>
-                 <div class="slot-vs">VS</div>
+                 
+                 <div class="vs-center-wrapper">
+                    <div class="slot-vs" id="slot-vs-element">VS</div>
+                 </div>
+                 
                  <div class="slot-column" id="slot2">
                     <div class="player-label-r" id="r-p2-label">JOGADOR 2</div>
                     <img id="r-slot2-img" src="" alt="Escudo" />
@@ -780,7 +942,7 @@
   <script>
     /* ========================================================
         1. INICIALIZAÇÃO E AUTENTICAÇÃO DO SUPABASE
-        ======================================================== */
+       ======================================================== */
     const SUPABASE_URL = 'https://vwurdtyzkiqoabofcpui.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ3dXJkdHl6a2lxb2Fib2ZjcHVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU2MjQyNDAsImV4cCI6MjEwMTIwMDI0MH0.a9XDtgqB-3gW_tRLIt3l_RAlpXIAflgOhF12ItQo0Xc';
     
@@ -850,7 +1012,7 @@
 
     /* ========================================================
         2. LÓGICA DO CAMPEONATO E APLICAÇÃO
-        ================================================        */
+       ======================================================== */
     const DEFAULT_PLAYERS = [
       { id: 201, name: 'LÉOZEIRA FC', img: 'https://vwurdtyzkiqoabofcpui.supabase.co/storage/v1/object/public/FOTOS-JOGADORES/LEO.jpg' },
       { id: 202, name: 'GABRIEL FC', img: 'https://vwurdtyzkiqoabofcpui.supabase.co/storage/v1/object/public/FOTOS-JOGADORES/GABRIEL.jpg' },
@@ -902,7 +1064,7 @@
 
     function applyAppState(parsedData) {
       if (!parsedData) return;
-      masterPlayers = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); // Garantir manter integridade base
+      masterPlayers = JSON.parse(JSON.stringify(DEFAULT_PLAYERS));
       masterTeams = (parsedData.masterTeams && parsedData.masterTeams.length) ? parsedData.masterTeams : JSON.parse(JSON.stringify(DEFAULT_TEAMS));
       
       players = (parsedData.players && parsedData.players.length) ? parsedData.players.map(p => {
@@ -1018,34 +1180,23 @@
 
     window.onload = function() { checkSession(); };
 
-    /* ========================================================
-        GERENCIAMENTO E TRANSIÇÃO SUAVE DE ABAS
-        ======================================================== */
-    const tabOrder = ['tab1', 'tab2', 'tab3', 'tab4', 'tab-final', 'tab5', 'tab6', 'tab7'];
-    let currentTabIndex = -1;
-
     function openTab(tabId, clickedBtn = null) {
       if (isPublicMode || isViewingHistory) {
-        const allowed = ['tab1', 'tab2', 'tab3', 'tab4', 'tab-final', 'tab5', 'tab6', 'tab7'];
         if (isPublicMode && !['tab3', 'tab4', 'tab-final', 'tab5', 'tab6', 'tab7'].includes(tabId)) {
           alert('Acesso restrito no modo atual.'); return;
         }
       }
 
-      const newIndex = tabOrder.indexOf(tabId);
-      let animClass = '';
+      let currentTabIndex = Array.from(document.querySelectorAll('.tab-content')).findIndex(t => t.classList.contains('active'));
+      const newIndex = Array.from(document.querySelectorAll('.tab-content')).findIndex(t => t.id === tabId);
       
+      let animClass = '';
       if (currentTabIndex !== -1 && newIndex !== currentTabIndex) {
           if (newIndex > currentTabIndex) animClass = 'slide-right';
           else if (newIndex < currentTabIndex) animClass = 'slide-left';
-      } else if (currentTabIndex === -1) {
-          animClass = 'slide-right';
-      }
-      currentTabIndex = newIndex;
+      } else if (currentTabIndex === -1) { animClass = 'slide-right'; }
 
-      document.querySelectorAll('.tab-content').forEach(el => {
-        el.classList.remove('active', 'slide-right', 'slide-left');
-      });
+      document.querySelectorAll('.tab-content').forEach(el => { el.classList.remove('active', 'slide-right', 'slide-left'); });
       document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
 
       const targetTab = document.getElementById(tabId);
@@ -1054,18 +1205,7 @@
       targetTab.classList.add('active');
       
       const btn = clickedBtn || document.querySelector(`nav button[onclick*="'${tabId}'"]`);
-      
-      if (btn) {
-          btn.classList.add('active');
-          const nav = document.getElementById('main-nav');
-          const navCenter = nav.offsetWidth / 2;
-          const btnCenter = btn.offsetLeft + (btn.offsetWidth / 2);
-          
-          nav.scrollTo({
-              left: btnCenter - navCenter,
-              behavior: 'smooth'
-          });
-      }
+      if (btn) { btn.classList.add('active'); const nav = document.getElementById('main-nav'); const navCenter = nav.offsetWidth / 2; const btnCenter = btn.offsetLeft + (btn.offsetWidth / 2); nav.scrollTo({ left: btnCenter - navCenter, behavior: 'smooth' }); }
 
       if (tabId === 'tab5') updateRanking(); 
       if (tabId === 'tab6') updateStats(); 
@@ -1087,24 +1227,8 @@
       if (!isPlayoff) updateScore(matchId, pNum, val); else updatePlayoffScore(stage, pNum, val, isPenalty);
     }
 
-    /* RESTAURAÇÃO DAS BASES PARA NÃO PERDER DADOS EXCLUÍDOS/EDITADOS NO LOCAL STORAGE */
-    function loadDefaultPlayers() { 
-      if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; 
-      players = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); 
-      masterPlayers = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); 
-      saveData(); 
-      renderPlayers(); 
-      showToast("👤 Base Restaurada (9 jogadores)!"); 
-    }
-
-    function loadDefaultTeams() { 
-      if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; 
-      teams = JSON.parse(JSON.stringify(DEFAULT_TEAMS)); 
-      masterTeams = JSON.parse(JSON.stringify(DEFAULT_TEAMS)); 
-      saveData(); 
-      renderTeams(); 
-      showToast("🛡️ Base Restaurada (12 times)!"); 
-    }
+    function loadDefaultPlayers() { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; players = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); masterPlayers = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); saveData(); renderPlayers(); showToast("👤 Base Restaurada (9 jogadores)!"); }
+    function loadDefaultTeams() { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; teams = JSON.parse(JSON.stringify(DEFAULT_TEAMS)); masterTeams = JSON.parse(JSON.stringify(DEFAULT_TEAMS)); saveData(); renderTeams(); showToast("🛡️ Base Restaurada (12 times)!"); }
 
     function addPlayer() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
@@ -1117,7 +1241,6 @@
     function renderPlayers() {
       const container = document.getElementById('players-list'); container.innerHTML = '';
       const canEdit = !isPublicMode && (!isViewingHistory || currentUserEmail === 'leo.santos.la@gmail.com');
-
       players.forEach(p => {
         const actionsHtml = !canEdit ? '' : `<div class="card-actions"><button class="btn-icon" title="Editar" onclick="openEditModal(${p.id})">✏️</button><button class="btn-icon del" title="Excluir" onclick="removePlayer(${p.id})">✖</button></div>`;
         container.innerHTML += `<div class="item-card"><div class="item-info"><img src="${p.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(p.name)}'"><span class="name">${p.name}</span></div>${actionsHtml}</div>`;
@@ -1125,21 +1248,12 @@
       document.getElementById('total-jogadores').innerText = players.length;
     }
 
-    function openEditModal(id) { 
-        if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; 
-        const p = players.find(x => x.id === id); if(!p) return; 
-        document.getElementById('edit-p-id').value = p.id; 
-        document.getElementById('edit-p-name').value = p.name; 
-        document.getElementById('edit-p-img-label').innerText = ''; 
-        document.getElementById('edit-modal').classList.add('active'); 
-        document.body.classList.add('modal-open');
-    }
+    function openEditModal(id) { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; const p = players.find(x => x.id === id); if(!p) return; document.getElementById('edit-p-id').value = p.id; document.getElementById('edit-p-name').value = p.name; document.getElementById('edit-p-img-label').innerText = ''; document.getElementById('edit-modal').classList.add('active'); document.body.classList.add('modal-open'); }
     function savePlayerEdit() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       const id = parseInt(document.getElementById('edit-p-id').value); const newName = document.getElementById('edit-p-name').value.trim(); const imgInput = document.getElementById('edit-p-img'); const p = players.find(x => x.id === id);
       if(!p || !newName) return alert('O nome é obrigatório!'); p.name = newName; const mp = masterPlayers.find(x => x.id === id); if(mp) mp.name = newName;
-      if (imgInput.files && imgInput.files[0]) { const r = new FileReader(); r.onload = (e) => { p.img = e.target.result; if(mp) mp.img = e.target.result; saveData(); renderPlayers(); closeModal('edit-modal'); showToast("✏️ Atualizado!"); }; r.readAsDataURL(imgInput.files[0]); } 
-      else { saveData(); renderPlayers(); closeModal('edit-modal'); showToast("✏️ Atualizado!"); }
+      if (imgInput.files && imgInput.files[0]) { const r = new FileReader(); r.onload = (e) => { p.img = e.target.result; if(mp) mp.img = e.target.result; saveData(); renderPlayers(); closeModal('edit-modal'); showToast("✏️ Atualizado!"); }; r.readAsDataURL(imgInput.files[0]); } else { saveData(); renderPlayers(); closeModal('edit-modal'); showToast("✏️ Atualizado!"); }
     }
     function removePlayer(id) { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; players = players.filter(x => x.id !== id); saveData(); renderPlayers(); showToast("👤 Removido!"); }
     
@@ -1154,7 +1268,6 @@
     function renderTeams() {
       const container = document.getElementById('teams-list'); container.innerHTML = '';
       const canEdit = !isPublicMode && (!isViewingHistory || currentUserEmail === 'leo.santos.la@gmail.com');
-
       teams.forEach(t => {
         const actionsHtml = !canEdit ? '' : `<div class="card-actions"><button class="btn-icon" title="Editar" onclick="openTeamEditModal(${t.id})">✏️</button><button class="btn-icon del" title="Excluir" onclick="removeTeam(${t.id})">✖</button></div>`;
         container.innerHTML += `<div class="item-card"><div class="item-info"><img src="${t.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(t.name)}'"><span class="name">${t.name}</span></div>${actionsHtml}</div>`;
@@ -1162,35 +1275,20 @@
       document.getElementById('total-times').innerText = teams.length;
     }
 
-    function openTeamEditModal(id) { 
-        if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; 
-        const t = teams.find(x => x.id === id); if(!t) return; 
-        document.getElementById('edit-t-id').value = t.id; 
-        document.getElementById('edit-t-name').value = t.name; 
-        document.getElementById('edit-t-img-label').innerText = ''; 
-        document.getElementById('edit-team-modal').classList.add('active'); 
-        document.body.classList.add('modal-open');
-    }
+    function openTeamEditModal(id) { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; const t = teams.find(x => x.id === id); if(!t) return; document.getElementById('edit-t-id').value = t.id; document.getElementById('edit-t-name').value = t.name; document.getElementById('edit-t-img-label').innerText = ''; document.getElementById('edit-team-modal').classList.add('active'); document.body.classList.add('modal-open'); }
     function saveTeamEdit() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       const id = parseInt(document.getElementById('edit-t-id').value); const newName = document.getElementById('edit-t-name').value.trim(); const imgInput = document.getElementById('edit-t-img'); const t = teams.find(x => x.id === id);
       if(!t || !newName) return alert('O nome é obrigatório!'); t.name = newName; const mt = masterTeams.find(x => x.id === id); if(mt) mt.name = newName;
-      if (imgInput.files && imgInput.files[0]) { const r = new FileReader(); r.onload = (e) => { t.img = e.target.result; if(mt) mt.img = e.target.result; saveData(); renderTeams(); closeModal('edit-team-modal'); }; r.readAsDataURL(imgInput.files[0]); } 
-      else { saveData(); renderTeams(); closeModal('edit-team-modal'); }
+      if (imgInput.files && imgInput.files[0]) { const r = new FileReader(); r.onload = (e) => { t.img = e.target.result; if(mt) mt.img = e.target.result; saveData(); renderTeams(); closeModal('edit-team-modal'); }; r.readAsDataURL(imgInput.files[0]); } else { saveData(); renderTeams(); closeModal('edit-team-modal'); }
     }
     function removeTeam(id) { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; teams = teams.filter(x => x.id !== id); saveData(); renderTeams(); }
 
     function generateRoundRobinFixtures() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       if (players.length < 2) return alert('Cadastre pelo menos 2 jogadores.');
-      matches = []; 
-      
-      let tempPlayers = [...players];
-      for (let i = tempPlayers.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [tempPlayers[i], tempPlayers[j]] = [tempPlayers[j], tempPlayers[i]];
-      }
-
+      matches = []; let tempPlayers = [...players];
+      for (let i = tempPlayers.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [tempPlayers[i], tempPlayers[j]] = [tempPlayers[j], tempPlayers[i]]; }
       if (tempPlayers.length % 2 !== 0) tempPlayers.push({ id: 'BYE', name: 'BYE' });
       
       const numRounds = tempPlayers.length - 1; const half = tempPlayers.length / 2; let matchId = 1;
@@ -1205,105 +1303,69 @@
     }
 
     let currentDisplayedRound = 0;
-
     function renderRoundsNav() {
-      const container = document.getElementById('rounds-nav'); 
-      if (matches.length === 0) { container.innerHTML = ''; return; }
-      
+      const container = document.getElementById('rounds-nav'); if (matches.length === 0) { container.innerHTML = ''; return; }
       const totalRounds = Math.max(...matches.map(m => m.round));
       let html = `<button id="btn-round-0" class="round-btn ${selectedRound === 0 ? 'active' : ''}" onclick="filterRound(0)">Todas as Rodadas</button>`;
-      
-      for (let r = 1; r <= totalRounds; r++) {
-          html += `<button id="btn-round-${r}" class="round-btn ${selectedRound === r ? 'active' : ''}" onclick="filterRound(${r})">Rodada ${r}</button>`;
-      }
+      for (let r = 1; r <= totalRounds; r++) html += `<button id="btn-round-${r}" class="round-btn ${selectedRound === r ? 'active' : ''}" onclick="filterRound(${r})">Rodada ${r}</button>`;
       container.innerHTML = html;
-
-      setTimeout(() => {
-          const activeBtn = document.getElementById(`btn-round-${selectedRound}`);
-          if (activeBtn) {
-              const navCenter = container.offsetWidth / 2;
-              const btnCenter = activeBtn.offsetLeft + (activeBtn.offsetWidth / 2);
-              container.scrollTo({ left: btnCenter - navCenter, behavior: 'smooth' });
-          }
-      }, 30);
+      setTimeout(() => { const activeBtn = document.getElementById(`btn-round-${selectedRound}`); if (activeBtn) { const navCenter = container.offsetWidth / 2; const btnCenter = activeBtn.offsetLeft + (activeBtn.offsetWidth / 2); container.scrollTo({ left: btnCenter - navCenter, behavior: 'smooth' }); } }, 30);
     }
     
     function filterRound(roundNum) { 
         const container = document.getElementById('matches-list');
-        
         let animClass = '';
         if (roundNum > currentDisplayedRound) animClass = 'slide-right';
         else if (roundNum < currentDisplayedRound) animClass = 'slide-left';
-        
-        selectedRound = roundNum; 
-        currentDisplayedRound = roundNum;
-        
-        renderRoundsNav(); 
-        
-        container.classList.remove('slide-right', 'slide-left');
-        void container.offsetWidth;
-        if (animClass) container.classList.add(animClass);
+        selectedRound = roundNum; currentDisplayedRound = roundNum;
+        renderRoundsNav(); container.classList.remove('slide-right', 'slide-left');
+        void container.offsetWidth; if (animClass) container.classList.add(animClass); renderMatches(); 
+    }
 
-        renderMatches(); 
+    /* ========================================================
+        3. ALGORITMO DE SORTEIO EQUILIBRADO DE TIMES
+       ======================================================== */
+    function getBalancedTeamDraw(player, excludeTeamId = null) {
+      if (!teams || teams.length === 0) return null;
+      if (teams.length === 1) return teams[0];
+      const teamUsage = {}; teams.forEach(t => teamUsage[t.id] = 0);
+      matches.forEach(m => { if (m.team1) teamUsage[m.team1.id] = (teamUsage[m.team1.id] || 0) + 1; if (m.team2) teamUsage[m.team2.id] = (teamUsage[m.team2.id] || 0) + 1; });
+      if (playoffData) { ['semi1', 'semi2', 'final'].forEach(s => { if (playoffData[s]) { if (playoffData[s].team1) teamUsage[playoffData[s].team1.id] = (teamUsage[playoffData[s].team1.id] || 0) + 1; if (playoffData[s].team2) teamUsage[playoffData[s].team2.id] = (teamUsage[playoffData[s].team2.id] || 0) + 1; } }); }
+      const playerTeamUsage = {};
+      if (player && player.id) { matches.forEach(m => { if (m.p1 && m.p1.id === player.id && m.team1) playerTeamUsage[m.team1.id] = (playerTeamUsage[m.team1.id] || 0) + 1; if (m.p2 && m.p2.id === player.id && m.team2) playerTeamUsage[m.team2.id] = (playerTeamUsage[m.team2.id] || 0) + 1; }); }
+      const candidateTeams = teams.filter(t => t.id !== excludeTeamId);
+      const weightedCandidates = candidateTeams.map(t => { const globalUses = teamUsage[t.id] || 0; const playerUses = playerTeamUsage[t.id] || 0; let weight = 1000 / ((globalUses * 1.2 + 1) * (playerUses * 1.5 + 1)); weight += Math.random() * 25; return { team: t, weight: Math.max(weight, 1) }; });
+      const totalWeight = weightedCandidates.reduce((sum, c) => sum + c.weight, 0); let randomVal = Math.random() * totalWeight;
+      for (let c of weightedCandidates) { if (randomVal < c.weight) return c.team; randomVal -= c.weight; }
+      return candidateTeams[Math.floor(Math.random() * candidateTeams.length)];
     }
 
     function drawMatchTeam(matchId) {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       if (teams.length < 2) return alert('Cadastre pelo menos 2 times!');
       const match = matches.find(m => m.id === matchId); if (!match) return;
-      
-      const rand1 = Math.floor(Math.random() * teams.length); 
-      let rand2 = Math.floor(Math.random() * teams.length); 
-      while (teams.length > 1 && rand2 === rand1) rand2 = Math.floor(Math.random() * teams.length);
-      
-      match.team1 = teams[rand1]; match.team2 = teams[rand2]; 
-      saveData(); renderMatches();
+      const t1 = getBalancedTeamDraw(match.p1); const t2 = getBalancedTeamDraw(match.p2, t1 ? t1.id : null);
+      match.team1 = t1; match.team2 = t2; saveData(); renderMatches();
     }
 
     function drawAllTeams() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
-      if (teams.length < 2) return alert('Cadastre pelo menos 2 times!'); 
-      if (matches.length === 0) return alert('Gere o chaveamento primeiro.');
-
-      let teamPool = [];
-      const requiredTeams = matches.length * 2;
-      
-      while(teamPool.length < requiredTeams) {
-        let shuffled = [...teams].sort(() => Math.random() - 0.5);
-        teamPool.push(...shuffled);
-      }
-
-      matches.forEach(m => {
-        let t1 = teamPool.shift();
-        let t2Index = teamPool.findIndex(t => t.id !== t1.id);
-        if (t2Index === -1) t2Index = 0; 
-        let t2 = teamPool.splice(t2Index, 1)[0];
-        
-        m.team1 = t1;
-        m.team2 = t2;
-      });
-
-      saveData(); 
-      renderMatches();
+      if (teams.length < 2) return alert('Cadastre pelo menos 2 times!'); if (matches.length === 0) return alert('Gere o chaveamento primeiro.');
+      matches.forEach(m => { const t1 = getBalancedTeamDraw(m.p1); const t2 = getBalancedTeamDraw(m.p2, t1 ? t1.id : null); m.team1 = t1; m.team2 = t2; });
+      saveData(); renderMatches();
     }
 
     function renderMatches() {
       const container = document.getElementById('matches-list'); container.innerHTML = '';
       if (matches.length === 0) { container.innerHTML = '<p style="color:var(--text-muted); text-align:center; padding: 20px;">Nenhuma partida gerada.</p>'; return; }
-
-      const isLocked = isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com');
-      const disabledAttr = isLocked ? 'disabled' : '';
-
-      const filtered = selectedRound === 0 ? matches : matches.filter(m => m.round === selectedRound);
-      let currentGroup = -1;
-
+      const isLocked = isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com'); const disabledAttr = isLocked ? 'disabled' : '';
+      const filtered = selectedRound === 0 ? matches : matches.filter(m => m.round === selectedRound); let currentGroup = -1;
       filtered.forEach(m => {
         if (selectedRound === 0 && m.round !== currentGroup) { currentGroup = m.round; container.innerHTML += `<h3 style="font-family:'Orbitron',sans-serif; color:var(--gold-primary); margin: 18px 0 10px 0; font-size:1.1rem; border-left:3px solid var(--gold-primary); padding-left:8px;">Rodada ${m.round}</h3>`; }
-        const t1Display = m.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${m.team1.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(m.team1.name)}'"> ${m.team1.name}</span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>';
-        const t2Display = m.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${m.team2.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(m.team2.name)}'"> ${m.team2.name}</span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>';
+        const t1Display = m.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${m.team1.img}"> ${m.team1.name}</span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>';
+        const t2Display = m.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${m.team2.img}"> ${m.team2.name}</span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>';
         const w1Tag = m.team1 ? `<img class="club-watermark" style="left: -10px;" src="${m.team1.img}" alt="" onerror="this.style.display='none'">` : '';
         const w2Tag = m.team2 ? `<img class="club-watermark" style="right: -10px;" src="${m.team2.img}" alt="" onerror="this.style.display='none'">` : '';
-
         const footerActionHtml = isLocked ? '' : `<button class="btn-draw-single" onclick="drawMatchTeam(${m.id})">🎲 Sortear Times deste Jogo</button>`;
 
         container.innerHTML += `
@@ -1343,20 +1405,22 @@
     }
 
     /* ========================================================
-       LÓGICA DE ROLETA ANIMADA (CASSINO) PARA PLAYOFFS E FINAL
-       ================================================        */
+       4. ROLETA ANIMADA (RAIOS 3D 4K CINEMATOGRÁFICOS)
+       ======================================================== */
     async function playRouletteAnimation(stageTitle, t1, t2, p1Name, p2Name, stage) {
       return new Promise((resolve) => {
         const overlay = document.getElementById('roulette-overlay');
         const wrapper = document.getElementById('roulette-3d-wrapper');
         const container = document.getElementById('roulette-container');
         const title = document.getElementById('roulette-title');
+        
         const s1Img = document.getElementById('r-slot1-img');
         const s1Name = document.getElementById('r-slot1-name');
         const p1Label = document.getElementById('r-p1-label');
         const s2Img = document.getElementById('r-slot2-img');
         const s2Name = document.getElementById('r-slot2-name');
         const p2Label = document.getElementById('r-p2-label');
+        const slotsContainer = document.getElementById('slots-container-el');
         
         const canvas = document.getElementById('roulette-lightning-canvas');
         const ctx = canvas.getContext('2d');
@@ -1364,224 +1428,272 @@
         overlay.classList.remove('hidden', 'overlay-fade-out');
         overlay.style.display = 'flex';
         
-        wrapper.classList.remove('recede-3d-animation', 'final-epic-spectacle-animation', 'final-epic-spin');
+        wrapper.classList.remove('recede-3d-animation', 'final-epic-spectacle-animation');
         container.classList.remove('hide-slots');
         
+        const vsElement = document.getElementById('slot-vs-element');
+
         if (stage === 'final') {
-            wrapper.classList.add('final-epic-spin');
+            slotsContainer.classList.add('is-final-mode');
+            title.innerHTML = `
+              <img class="final-center-trophy" src="https://i.psnprofiles.com/guides/18274/7186c5.png" alt="Troféu Final" onerror="this.onerror=null;this.src='https://pngimg.com/uploads/trophy/trophy_PNG1422.png'">
+              <div class="final-title-3d"> - GRANDE FINAL - </div>
+            `;
+            vsElement.classList.add('final-vs-3d'); vsElement.classList.remove('semi-vs-3d');
+        } else {
+            slotsContainer.classList.remove('is-final-mode');
+            title.innerHTML = `<div class="semi-title-3d">${stageTitle}</div>`;
+            vsElement.classList.add('semi-vs-3d'); vsElement.classList.remove('final-vs-3d');
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        title.innerText = stageTitle;
-        p1Label.innerText = p1Name;
-        p2Label.innerText = p2Name;
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        p1Label.innerText = p1Name; p2Label.innerText = p2Name;
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
 
         let spins = 0;
-        const maxSpins = 35;
-        let delay = 50;
+        const maxSpins = 32;
+
+        let isSpinning = true;
+        let activeBolts = [];
+        let particles = [];
+        
+        const themeGlow = stage === 'final' ? '#f5af19' : '#00f2fe';
+        const coreWhite = '#ffffff';
+
+        // Geração fluida e visualmente distribuída (partículas subindo da base e raios espalhados)
+        function drawCinematicEffects() {
+            if (!isSpinning && activeBolts.length === 0 && particles.length === 0) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.globalCompositeOperation = 'screen';
+            
+            // Geração de Faíscas/Partículas Mais Baixas e Distribuídas
+            if (isSpinning && Math.random() < 0.7) {
+                for (let i = 0; i < 4; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width, // Espalhado em toda a largura
+                        y: canvas.height + 20,           // Nascendo bem de baixo
+                        vx: (Math.random() - 0.5) * 4,
+                        vy: -(Math.random() * 8 + 4),
+                        life: 1.0,
+                        size: Math.random() * 4 + 2,
+                        color: Math.random() > 0.5 ? themeGlow : coreWhite
+                    });
+                }
+            }
+
+            // Geração de Raios
+            if (isSpinning && Math.random() < 0.15) {
+                // Relâmpagos ramificados nascendo das laterais e fundo, indo pro centro
+                let startX = Math.random() > 0.5 ? 0 : canvas.width;
+                let startY = (Math.random() * canvas.height * 0.7) + (canvas.height * 0.3); // Mais centralizados pra baixo
+                activeBolts.push(createLightningBolt(startX, startY, canvas.width/2 + (Math.random()*200 - 100), canvas.height/2 + (Math.random()*150 - 75)));
+            }
+
+            // Atualiza e desenha partículas
+            for (let i = particles.length - 1; i >= 0; i--) {
+                let p = particles[i];
+                p.x += p.vx; p.y += p.vy;
+                p.vx *= 0.98; // Atrito do ar
+                p.life -= 0.015; // Desaparece lentamente
+                if (p.life <= 0) { particles.splice(i, 1); continue; }
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = p.color;
+                ctx.globalAlpha = p.life;
+                ctx.fill();
+            }
+
+            // Atualiza e desenha Raios
+            ctx.globalAlpha = 1.0;
+            for (let i = activeBolts.length - 1; i >= 0; i--) {
+                let bolt = activeBolts[i];
+                drawLightningPath(ctx, bolt, themeGlow);
+                bolt.life -= 0.12; 
+                if (bolt.life <= 0) activeBolts.splice(i, 1);
+            }
+
+            if (isSpinning || activeBolts.length > 0 || particles.length > 0) {
+                requestAnimationFrame(drawCinematicEffects);
+            }
+        }
+
+        // Criar caminho do raio (Algoritmo Fractal)
+        function createLightningBolt(startX, startY, endX, endY) {
+            let segments = 12;
+            let points = [{x: startX, y: startY}];
+            for (let i = 1; i < segments; i++) {
+                let t = i / segments;
+                let tx = startX + (endX - startX) * t;
+                let ty = startY + (endY - startY) * t;
+                let offset = (Math.random() - 0.5) * 80; // Muito tortuoso
+                points.push({x: tx + offset, y: ty + offset});
+            }
+            points.push({x: endX, y: endY});
+            return { points: points, life: 1.0 };
+        }
+
+        // Desenhar relâmpago com glow profundo (3D/4K feel)
+        function drawLightningPath(ctx, bolt, glowColor) {
+            let pts = bolt.points;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            // Camada Externa (Glow intenso)
+            ctx.beginPath();
+            ctx.moveTo(pts[0].x, pts[0].y);
+            for (let i=1; i<pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+            ctx.strokeStyle = glowColor;
+            ctx.lineWidth = 12 * bolt.life;
+            ctx.shadowBlur = 40;
+            ctx.shadowColor = glowColor;
+            ctx.globalAlpha = bolt.life * 0.8;
+            ctx.stroke();
+
+            // Camada Interna (Núcleo Branco e Quente)
+            ctx.beginPath();
+            ctx.moveTo(pts[0].x, pts[0].y);
+            for (let i=1; i<pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 4 * bolt.life;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#ffffff';
+            ctx.globalAlpha = bolt.life;
+            ctx.stroke();
+        }
+        
+        drawCinematicEffects();
 
         function spin() {
             const rand1 = teams[Math.floor(Math.random() * teams.length)];
             const rand2 = teams[Math.floor(Math.random() * teams.length)];
             
-            s1Img.src = rand1.img;
-            s1Name.innerText = rand1.name;
-            s2Img.src = rand2.img;
-            s2Name.innerText = rand2.name;
+            s1Img.src = rand1.img; s1Name.innerText = rand1.name;
+            s2Img.src = rand2.img; s2Name.innerText = rand2.name;
+
+            // REMOVIDO DESFOQUE: Efeito limpo de escala e elevação leve
+            if(spins < maxSpins - 1) {
+                s1Img.style.transform = `scale(1.1) translateY(${Math.random()*8 - 4}px)`;
+                s1Img.style.filter = `brightness(1.2) drop-shadow(0 0 20px rgba(255,255,255,0.25))`;
+                s2Img.style.transform = `scale(1.1) translateY(${Math.random()*8 - 4}px)`;
+                s2Img.style.filter = `brightness(1.2) drop-shadow(0 0 20px rgba(255,255,255,0.25))`;
+            }
 
             spins++;
+            let progress = spins / maxSpins;
+            let easing = Math.pow(progress, 3);
+            let delay = 35 + (easing * 250); 
+
             if (spins < maxSpins) {
-                if (spins > 25) delay += 20;
-                else if (spins > 15) delay += 10;
-                
                 setTimeout(spin, delay);
             } else {
-                s1Img.src = t1.img;
-                s1Name.innerText = t1.name;
-                s2Img.src = t2.img;
-                s2Name.innerText = t2.name;
+                // Finalizou - Fixar a arte do escudo escolhido
+                s1Img.src = t1.img; s1Name.innerText = t1.name;
+                s2Img.src = t2.img; s2Name.innerText = t2.name;
+                
+                s1Img.style.transform = `scale(1.25)`;
+                s1Img.style.filter = `brightness(1.25) drop-shadow(0 0 40px var(--gold-primary))`;
+                s2Img.style.transform = `scale(1.25)`;
+                s2Img.style.filter = `brightness(1.25) drop-shadow(0 0 40px var(--gold-primary))`;
+
+                // Rajada de raios final épica distribuída
+                for(let k = 0; k < 6; k++) {
+                    activeBolts.push(createLightningBolt(
+                        Math.random() * canvas.width, 0, 
+                        canvas.width/2 + (Math.random()*400-200), canvas.height/2 + (Math.random()*200-100)
+                    ));
+                    activeBolts.push(createLightningBolt(
+                        Math.random() * canvas.width, canvas.height, 
+                        canvas.width/2 + (Math.random()*400-200), canvas.height/2 + (Math.random()*200-100)
+                    ));
+                }
 
                 setTimeout(() => {
-                    fireOrganicLightning(ctx, canvas, wrapper, overlay, container, () => {
+                    isSpinning = false; 
+                    fireCinematicFinale(ctx, canvas, wrapper, overlay, container, () => {
                         overlay.style.display = 'none';
-                        wrapper.classList.remove('final-epic-spin');
                         resolve();
                     }, stage);
-                }, stage === 'final' ? 1200 : 800); 
+                }, stage === 'final' ? 1500 : 1000); 
             }
         }
         spin();
     });
     }
 
-    function fireOrganicLightning(ctx, canvas, wrapper, overlay, container, callback, stage) {
-        const slot1Rect = document.getElementById('slot1').getBoundingClientRect();
-        const slot2Rect = document.getElementById('slot2').getBoundingClientRect();
-        
-        const targets = [
-            { x: slot1Rect.left + slot1Rect.width / 2, y: slot1Rect.top + slot1Rect.height / 2 },
-            { x: slot2Rect.left + slot2Rect.width / 2, y: slot2Rect.top + slot2Rect.height / 2 }
-        ];
-
-        let alpha = 1.3;
+    function fireCinematicFinale(ctx, canvas, wrapper, overlay, container, callback, stage) {
+        let finalFlash = 1.0;
         const isFinal = stage === 'final';
 
-        wrapper.classList.remove('final-epic-spin');
-        
         wrapper.classList.add(isFinal ? 'final-epic-spectacle-animation' : 'recede-3d-animation');
         overlay.classList.add('overlay-fade-out');
+        
+        void wrapper.offsetWidth;
+        wrapper.classList.add('cinematic-impact');
 
-        if (isFinal) {
-            setTimeout(() => {
-                container.classList.add('hide-slots');
-            }, 300);
-        }
+        if (isFinal) setTimeout(() => container.classList.add('hide-slots'), 400);
 
-        function drawBolts() {
+        function drawFinalGlow() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.save();
-            ctx.globalCompositeOperation = 'screen'; 
-
-            if (alpha > 0) {
-                let currentAlpha = Math.min(alpha, 1.0);
-                
-                let shadowColor, glowColor, coreColor;
-                if (isFinal) {
-                    shadowColor = `rgba(200, 40, 0, ${currentAlpha * 0.7})`; 
-                    glowColor = `rgba(245, 175, 25, ${currentAlpha})`; 
-                    coreColor = `rgba(255, 255, 255, ${currentAlpha})`; 
+            if (finalFlash > 0) {
+                let grad = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, canvas.width * 0.8);
+                if(isFinal) {
+                    grad.addColorStop(0, `rgba(255, 255, 255, ${finalFlash * 0.9})`);
+                    grad.addColorStop(0.3, `rgba(245, 175, 25, ${finalFlash * 0.6})`);
+                    grad.addColorStop(1, `rgba(150, 50, 0, 0)`);
                 } else {
-                    shadowColor = `rgba(0, 80, 180, ${currentAlpha * 0.6})`; 
-                    glowColor = `rgba(0, 242, 254, ${currentAlpha * 0.8})`; 
-                    coreColor = `rgba(220, 255, 255, ${currentAlpha})`; 
+                    grad.addColorStop(0, `rgba(255, 255, 255, ${finalFlash * 0.9})`);
+                    grad.addColorStop(0.3, `rgba(0, 242, 254, ${finalFlash * 0.6})`);
+                    grad.addColorStop(1, `rgba(0, 50, 150, 0)`);
                 }
-
-                let glowExpansion = (1 - currentAlpha) * 60;
-                const numBolts = isFinal ? 14 : 10; 
-                
-                for (let i = 0; i < numBolts; i++) {
-                    const target = targets[i % 2];
-                    const isLeftEdge = Math.random() < 0.5;
-                    const startX = isLeftEdge ? -100 : window.innerWidth + 100;
-                    const startY = Math.random() * window.innerHeight;
-                    
-                    let points = [{x: startX, y: startY}];
-                    let segments = 10; 
-                    for(let j=1; j<segments; j++) {
-                        let ratio = j/segments;
-                        points.push({
-                            x: startX + (target.x - startX)*ratio + (Math.random()-0.5)*(150 + glowExpansion),
-                            y: startY + (target.y - startY)*ratio + (Math.random()-0.5)*(150 + glowExpansion)
-                        });
-                    }
-                    points.push({x: target.x, y: target.y});
-
-                    ctx.beginPath();
-                    ctx.moveTo(points[0].x, points[0].y);
-                    for(let j=1; j<points.length; j++) ctx.lineTo(points[j].x, points[j].y);
-                    ctx.strokeStyle = shadowColor;
-                    ctx.lineWidth = Math.random() * (isFinal ? 15 : 12) + (isFinal ? 10 : 8) + glowExpansion * 0.5;
-                    ctx.shadowColor = shadowColor;
-                    ctx.shadowBlur = (isFinal ? 50 : 40) + glowExpansion;
-                    ctx.lineJoin = 'round';
-                    ctx.lineCap = 'round';
-                    ctx.stroke();
-
-                    ctx.beginPath();
-                    ctx.moveTo(points[0].x, points[0].y);
-                    for(let j=1; j<points.length; j++) ctx.lineTo(points[j].x, points[j].y);
-                    ctx.strokeStyle = glowColor;
-                    ctx.lineWidth = Math.random() * 5 + (isFinal ? 4 : 3) + glowExpansion * 0.2;
-                    ctx.shadowColor = isFinal ? '#f5af19' : '#00f2fe';
-                    ctx.shadowBlur = 25 + glowExpansion * 0.5;
-                    ctx.stroke();
-
-                    ctx.beginPath();
-                    ctx.moveTo(points[0].x, points[0].y);
-                    for(let j=1; j<points.length; j++) ctx.lineTo(points[j].x, points[j].y);
-                    ctx.strokeStyle = coreColor;
-                    ctx.lineWidth = Math.random() * 2 + 1;
-                    ctx.shadowColor = isFinal ? '#ffffff' : '#ccffff';
-                    ctx.shadowBlur = 10;
-                    ctx.stroke();
-                }
-            }
-            ctx.restore();
-
-            alpha -= isFinal ? 0.012 : 0.015; 
-            
-            if (alpha > -0.2) { 
-                requestAnimationFrame(drawBolts);
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                finalFlash -= 0.02; // Fade out suave
+                requestAnimationFrame(drawFinalGlow);
             } else {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
         }
         
-        drawBolts();
+        drawFinalGlow();
 
         setTimeout(() => {
             callback();
-        }, isFinal ? 1700 : 1200); 
+            wrapper.classList.remove('cinematic-impact');
+        }, isFinal ? 1800 : 1500); 
     }
 
     async function drawPlayoffTeam(stage) {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       if (teams.length < 2) return alert('Cadastre times!'); const match = playoffData[stage]; if (!match || !match.p1 || !match.p2) return alert('Participantes não definidos.');
       
-      const rand1 = Math.floor(Math.random() * teams.length); 
-      let rand2 = Math.floor(Math.random() * teams.length); 
-      while (teams.length > 1 && rand2 === rand1) rand2 = Math.floor(Math.random() * teams.length);
-      
-      const t1 = teams[rand1];
-      const t2 = teams[rand2];
-
-      const stageTitle = stage === 'final' ? 'Sorteio: Grande Final 🏆' : (stage === 'semi1' ? 'Sorteio: Semifinal 1' : 'Sorteio: Semifinal 2');
+      const t1 = getBalancedTeamDraw(match.p1);
+      const t2 = getBalancedTeamDraw(match.p2, t1 ? t1.id : null);
+      const stageTitle = stage === 'final' ? ' - GRANDE FINAL - ' : (stage === 'semi1' ? 'Semifinal 1' : 'Semifinal 2');
       
       await playRouletteAnimation(stageTitle, t1, t2, match.p1.name, match.p2.name, stage);
-
-      match.team1 = t1; 
-      match.team2 = t2; 
-      saveData(); 
-      renderPlayoffs();
-      triggerOrganicMaterializeDOM(stage);
+      match.team1 = t1; match.team2 = t2; 
+      saveData(); renderPlayoffs(); triggerOrganicMaterializeDOM(stage);
     }
 
     async function drawAllSemisTeams() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       if (teams.length < 2) return alert('Cadastre times!'); if (!playoffData.semi1 || !playoffData.semi2) return alert('Carregue as Semifinais primeiro.');
       
-      let teamPool = [];
-      const requiredTeams = 4;
-      while(teamPool.length < requiredTeams) {
-        let shuffled = [...teams].sort(() => Math.random() - 0.5);
-        teamPool.push(...shuffled);
-      }
-
       const stages = ['semi1', 'semi2'];
       for (let stage of stages) {
           const match = playoffData[stage];
           if (match && match.p1 && match.p2) { 
-              let t1 = teamPool.shift();
-              let t2Index = teamPool.findIndex(t => t.id !== t1.id);
-              if(t2Index === -1) t2Index = 0;
-              let t2 = teamPool.splice(t2Index, 1)[0];
+              const t1 = getBalancedTeamDraw(match.p1);
+              const t2 = getBalancedTeamDraw(match.p2, t1 ? t1.id : null);
               
-              await playRouletteAnimation(stage === 'semi1' ? 'Sorteio: Semifinal 1' : 'Sorteio: Semifinal 2', t1, t2, match.p1.name, match.p2.name, stage);
+              await playRouletteAnimation(stage === 'semi1' ? 'Semifinal 1' : 'Semifinal 2', t1, t2, match.p1.name, match.p2.name, stage);
+              match.team1 = t1; match.team2 = t2; 
+              saveData(); renderPlayoffs(); triggerOrganicMaterializeDOM(stage);
 
-              match.team1 = t1; 
-              match.team2 = t2; 
-              
-              saveData(); 
-              renderPlayoffs();
-              triggerOrganicMaterializeDOM(stage);
-
-              if (stage === 'semi1') {
-                  await new Promise(r => setTimeout(r, 2200));
-              }
+              if (stage === 'semi1') await new Promise(r => setTimeout(r, 2000));
           }
       }
     }
@@ -1592,9 +1704,7 @@
       if(flashedCard) {
           const addClass = stage === 'final' ? 'final-organic-materialize' : 'organic-materialize';
           flashedCard.classList.add(addClass);
-          setTimeout(() => {
-              if(flashedCard) flashedCard.classList.remove(addClass);
-          }, 3000);
+          setTimeout(() => { if(flashedCard) flashedCard.classList.remove(addClass); }, 3000);
       }
     }
 
@@ -1640,16 +1750,17 @@
       const f1 = playoffData.final && playoffData.final.p1; const f2 = playoffData.final && playoffData.final.p2;
       const fw1 = playoffData.final && playoffData.final.team1 ? `<img class="club-watermark" style="left: -10px;" src="${playoffData.final.team1.img}" onerror="this.style.display='none'">` : '';
       const fw2 = playoffData.final && playoffData.final.team2 ? `<img class="club-watermark" style="right: -10px;" src="${playoffData.final.team2.img}" onerror="this.style.display='none'">` : '';
-      const finalFooter = isLocked ? '' : `<button class="btn-draw-single btn-draw-final" style="border-color:var(--gold-primary); color:var(--gold-primary);" ${!f1 || !f2 ? 'disabled' : ''} onclick="drawPlayoffTeam('final')">🎲 Sortear Times da Final</button>`;
+      const finalFooter = isLocked ? '' : `<button class="btn-draw-single btn-draw-final" ${!f1 || !f2 ? 'disabled' : ''} onclick="drawPlayoffTeam('final')">🎲 Sortear Times da Final</button>`;
 
       fContainer.innerHTML = `
-        <div id="match-card-final" class="match-card" style="border: 2px solid var(--gold-primary);">
+        <div id="match-card-final" class="match-card final-epic-card">
+          <div class="final-bg-watermark">FINAL</div>
           <div class="match-main">
             <div class="team-box">${fw1}<img class="player-avatar" src="${f1 ? f1.img : 'https://api.dicebear.com/7.x/bottts/svg?seed=F1'}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=F1'"><div style="min-width:0;"><span class="player-title">${f1 ? f1.name : 'Vencedor Semi 1'}</span>${playoffData.final && playoffData.final.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${playoffData.final.team1.img}"> ${playoffData.final.team1.name}</span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>'}</div></div>
             <div class="score-container"><div class="score-row"><input type="text" inputmode="numeric" class="score-input-text" value="${playoffData.final ? playoffData.final.score1 : ''}" placeholder="0" ${!f1 || !f2 || isLocked ? 'disabled' : ''} onchange="updateScoreFromInput(this, null, 1, true, 'final')"><span class="score-vs" style="font-size:1.1rem; color:var(--gold-primary)">🏆</span><input type="text" inputmode="numeric" class="score-input-text" value="${playoffData.final ? playoffData.final.score2 : ''}" placeholder="0" ${!f1 || !f2 || isLocked ? 'disabled' : ''} onchange="updateScoreFromInput(this, null, 2, true, 'final')"></div>${playoffData.final ? renderPenaltyRow(playoffData.final, 'final') : ''}</div>
             <div class="team-box right">${fw2}<div style="min-width:0;"><span class="player-title">${f2 ? f2.name : 'Vencedor Semi 2'}</span>${playoffData.final && playoffData.final.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${playoffData.final.team2.img}"> ${playoffData.final.team2.name}</span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>'}</div><img class="player-avatar" src="${f2 ? f2.img : 'https://api.dicebear.com/7.x/bottts/svg?seed=F2'}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=F2'"></div>
           </div>
-          <div class="match-footer" style="justify-content: center;">${finalFooter}</div>
+          <div class="match-footer" style="justify-content: center; position: relative; z-index: 2; margin-top: 15px; border-top: none;">${finalFooter}</div>
         </div>
       `;
     }
@@ -1682,24 +1793,14 @@
         const isP1Champion = champion.id === fn.p1.id; const champTeam = isP1Champion ? fn.team1 : fn.team2; const runnerUp = isP1Champion ? fn.p2 : fn.p1;
         currentChampion = { champion, team: champTeam }; document.getElementById('champ-tournament-title').innerText = "LIGA DOS CHORÕES • EAFC";
         let currentEditionIndex = hallOfFame.findIndex(h => h.isCurrentEdition === true);
-
-        const historySnapshot = {
-          players: JSON.parse(JSON.stringify(players)),
-          matches: JSON.parse(JSON.stringify(matches)),
-          playoffData: JSON.parse(JSON.stringify(playoffData))
-        };
+        const historySnapshot = { players: JSON.parse(JSON.stringify(players)), matches: JSON.parse(JSON.stringify(matches)), playoffData: JSON.parse(JSON.stringify(playoffData)) };
 
         if (currentEditionIndex !== -1) {
           hallOfFame[currentEditionIndex].champion = champion; hallOfFame[currentEditionIndex].team = champTeam; hallOfFame[currentEditionIndex].runnerUp = runnerUp;
           hallOfFame[currentEditionIndex].date = new Date().toLocaleDateString('pt-BR') + ' às ' + new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
           hallOfFame[currentEditionIndex].history = historySnapshot;
         } else {
-          hallOfFame.unshift({
-            id: Date.now(), title: `Edição #${hallOfFame.length + 1}`,
-            date: new Date().toLocaleDateString('pt-BR') + ' às ' + new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'}),
-            champion: champion, team: champTeam, runnerUp: runnerUp, isCurrentEdition: true,
-            history: historySnapshot
-          });
+          hallOfFame.unshift({ id: Date.now(), title: `Edição #${hallOfFame.length + 1}`, date: new Date().toLocaleDateString('pt-BR') + ' às ' + new Date().toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'}), champion: champion, team: champTeam, runnerUp: runnerUp, isCurrentEdition: true, history: historySnapshot });
         }
 
         let pastTitles = hallOfFame.filter(h => h.champion.id === champion.id).length;
@@ -1714,12 +1815,7 @@
       const teamImg = document.getElementById('champ-team-img'); const teamName = document.getElementById('champ-team-name'); const watermarkImg = document.getElementById('champ-watermark-img');
       if (champTeam) { teamImg.src = champTeam.img; teamImg.style.display = 'inline-block'; teamName.innerText = champTeam.name; watermarkImg.src = champTeam.img; watermarkImg.style.display = 'block'; } 
       else { teamImg.style.display = 'none'; teamName.innerText = ''; watermarkImg.style.display = 'none'; }
-      
-      document.body.classList.add('modal-open');
-      const championModalContainer = document.getElementById('champion-modal');
-      championModalContainer.classList.add('active');
-      championModalContainer.scrollTop = 0; 
-
+      document.body.classList.add('modal-open'); const championModalContainer = document.getElementById('champion-modal'); championModalContainer.classList.add('active'); championModalContainer.scrollTop = 0; 
       startSymbolRain();
     }
 
@@ -1758,66 +1854,30 @@
     function stopSymbolRain() { if (symbolAnimId) cancelAnimationFrame(symbolAnimId); const canvas = document.getElementById('champion-canvas'); if(canvas) canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height); const cardCanvas = document.getElementById('champion-card-canvas'); if(cardCanvas) cardCanvas.getContext('2d').clearRect(0, 0, cardCanvas.width, cardCanvas.height); }
 
     function calculateStats(onlyGroupStage = false) {
-      const statsMap = {}; 
-      players.forEach(p => { 
-        statsMap[p.id] = { id: p.id, name: p.name, img: p.img, pts: 0, j: 0, v: 0, e: 0, d: 0, gp: 0, gc: 0, sg: 0 }; 
-      });
-
-      // 1. Fase de Grupos / Pontos Corridos
+      const statsMap = {}; players.forEach(p => { statsMap[p.id] = { id: p.id, name: p.name, img: p.img, pts: 0, j: 0, v: 0, e: 0, d: 0, gp: 0, gc: 0, sg: 0 }; });
       matches.forEach(m => {
         if (m.score1 !== '' && m.score2 !== '' && !isNaN(m.score1) && !isNaN(m.score2)) {
-          const s1 = statsMap[m.p1.id]; const s2 = statsMap[m.p2.id]; 
-          const sc1 = parseInt(m.score1, 10); const sc2 = parseInt(m.score2, 10);
+          const s1 = statsMap[m.p1.id]; const s2 = statsMap[m.p2.id]; const sc1 = parseInt(m.score1, 10); const sc2 = parseInt(m.score2, 10);
           if (s1 && s2) {
-            s1.j++; s2.j++; 
-            s1.gp += sc1; s1.gc += sc2; 
-            s2.gp += sc2; s2.gc += sc1;
-            
-            if (sc1 > sc2) { s1.pts += 3; s1.v++; s2.d++; } 
-            else if (sc2 > sc1) { s2.pts += 3; s2.v++; s1.d++; } 
-            else { s1.pts += 1; s1.e++; s2.pts += 1; s2.e++; }
-            
+            s1.j++; s2.j++; s1.gp += sc1; s1.gc += sc2; s2.gp += sc2; s2.gc += sc1;
+            if (sc1 > sc2) { s1.pts += 3; s1.v++; s2.d++; } else if (sc2 > sc1) { s2.pts += 3; s2.v++; s1.d++; } else { s1.pts += 1; s1.e++; s2.pts += 1; s2.e++; }
             s1.sg = s1.gp - s1.gc; s2.sg = s2.gp - s2.gc;
           }
         }
       });
-      
-      const sortFn = (a, b) => { 
-        if (b.pts !== a.pts) return b.pts - a.pts; 
-        if (b.v !== a.v) return b.v - a.v; 
-        if (b.sg !== a.sg) return b.sg - a.sg; 
-        if (b.gp !== a.gp) return b.gp - a.gp; 
-        return a.name.localeCompare(b.name); 
-      };
-
+      const sortFn = (a, b) => { if (b.pts !== a.pts) return b.pts - a.pts; if (b.v !== a.v) return b.v - a.v; if (b.sg !== a.sg) return b.sg - a.sg; if (b.gp !== a.gp) return b.gp - a.gp; return a.name.localeCompare(b.name); };
       if (onlyGroupStage) return Object.values(statsMap).sort(sortFn);
 
-      // 2. Semifinal e Grande Final - SOMA DOS STATUS NA ABA ESTATÍSTICAS
       [playoffData.semi1, playoffData.semi2, playoffData.final].forEach(pm => {
         if (pm && pm.p1 && pm.p2 && pm.score1 !== '' && pm.score2 !== '' && !isNaN(pm.score1) && !isNaN(pm.score2)) {
-          const s1 = statsMap[pm.p1.id]; const s2 = statsMap[pm.p2.id]; 
-          let sc1 = parseInt(pm.score1, 10); let sc2 = parseInt(pm.score2, 10);
-          
+          const s1 = statsMap[pm.p1.id]; const s2 = statsMap[pm.p2.id]; let sc1 = parseInt(pm.score1, 10); let sc2 = parseInt(pm.score2, 10);
           if (s1 && s2) {
-            // Contabiliza gols e partidas jogadas nas finais
-            s1.j++; s2.j++; 
-            s1.gp += sc1; s1.gc += sc2; 
-            s2.gp += sc2; s2.gc += sc1;
-            
-            // Computa vitórias e derrotas (incluindo as decidas por pênaltis)
-            const winner = getWinnerOfMatch(pm); 
-            if (winner) { 
-              if (winner.id === pm.p1.id) { s1.v++; s2.d++; } 
-              else if (winner.id === pm.p2.id) { s2.v++; s1.d++; } 
-            } else if (sc1 === sc2) {
-               // Apenas se o jogo empatou no tempo normal e os pênaltis ainda não foram lançados
-               s1.e++; s2.e++;
-            }
+            s1.j++; s2.j++; s1.gp += sc1; s1.gc += sc2; s2.gp += sc2; s2.gc += sc1;
+            const winner = getWinnerOfMatch(pm); if (winner) { if (winner.id === pm.p1.id) { s1.v++; s2.d++; } else if (winner.id === pm.p2.id) { s2.v++; s1.d++; } } else if (sc1 === sc2) { s1.e++; s2.e++; }
             s1.sg = s1.gp - s1.gc; s2.sg = s2.gp - s2.gc;
           }
         }
       });
-      
       return Object.values(statsMap).sort(sortFn);
     }
 
@@ -1833,15 +1893,7 @@
     function updateStats() {
       const ranking = calculateStats(false); const playedPlayers = ranking.filter(p => p.j > 0);
       if (playedPlayers.length === 0) { ['ataque','defesa','saldo','p-saldo','vitorias','derrotas','gc'].forEach(s => { document.getElementById(`st-m-${s.replace('p-','')}-nome`).innerText = '-'; document.getElementById(`st-m-${s.replace('p-','')}-val`).innerText = '-'; }); return; }
-      
-      const mAtaque = [...playedPlayers].sort((a,b) => b.gp - a.gp)[0]; 
-      const mDefesa = [...playedPlayers].sort((a,b) => a.gc - b.gc)[0]; 
-      const mSaldo = [...playedPlayers].sort((a,b) => b.sg - a.sg)[0]; 
-      const pSaldo = [...playedPlayers].sort((a,b) => a.sg - b.sg)[0]; 
-      const mVitorias = [...playedPlayers].sort((a,b) => b.v - a.v)[0]; 
-      const mDerrotas = [...playedPlayers].sort((a,b) => b.d - a.d)[0]; 
-      const mGolsSofridos = [...playedPlayers].sort((a,b) => b.gc - a.gc)[0];
-      
+      const mAtaque = [...playedPlayers].sort((a,b) => b.gp - a.gp)[0]; const mDefesa = [...playedPlayers].sort((a,b) => a.gc - b.gc)[0]; const mSaldo = [...playedPlayers].sort((a,b) => b.sg - a.sg)[0]; const pSaldo = [...playedPlayers].sort((a,b) => a.sg - b.sg)[0]; const mVitorias = [...playedPlayers].sort((a,b) => b.v - a.v)[0]; const mDerrotas = [...playedPlayers].sort((a,b) => b.d - a.d)[0]; const mGolsSofridos = [...playedPlayers].sort((a,b) => b.gc - a.gc)[0];
       if(mAtaque) { document.getElementById('st-m-ataque-nome').innerText = mAtaque.name; document.getElementById('st-m-ataque-val').innerText = `${mAtaque.gp} Gols Marcados`; }
       if(mDefesa) { document.getElementById('st-m-defesa-nome').innerText = mDefesa.name; document.getElementById('st-m-defesa-val').innerText = `${mDefesa.gc} Gols Sofridos`; }
       if(mSaldo) { document.getElementById('st-m-saldo-nome').innerText = mSaldo.name; document.getElementById('st-m-saldo-val').innerText = `${mSaldo.sg > 0 ? '+' : ''}${mSaldo.sg} Saldo`; }
@@ -1859,27 +1911,32 @@
 
     function createHistory(id) {
       if (isPublicMode || currentUserEmail !== 'leo.santos.la@gmail.com') return;
-      const item = hallOfFame.find(h => h.id === id);
-      if (!item) return;
+      const item = hallOfFame.find(h => h.id === id); if (!item) return;
+      item.history = { players: JSON.parse(JSON.stringify(masterPlayers)), matches: [], playoffData: { semi1: null, semi2: null, final: null } };
+      saveData().then(() => { viewHistory(id); });
+    }
 
-      item.history = {
-          players: JSON.parse(JSON.stringify(masterPlayers)), 
-          matches: [],
-          playoffData: { semi1: null, semi2: null, final: null }
-      };
-      
-      saveData().then(() => {
-          viewHistory(id);
-      });
+    /* ========================================================
+       5. EDIÇÃO DE DATAS DA GALERIA (PERMISSÃO: LEO.SANTOS.LA)
+       ======================================================== */
+    function openEditHallDateModal(id) {
+      if (isPublicMode || currentUserEmail !== 'leo.santos.la@gmail.com') return;
+      const item = hallOfFame.find(h => h.id === id); if (!item) return;
+      document.getElementById('edit-hall-id').value = item.id; document.getElementById('edit-hall-date-val').value = item.date || ''; document.getElementById('edit-hall-date-modal').classList.add('active'); document.body.classList.add('modal-open');
+    }
+
+    function saveHallDateEdit() {
+      if (isPublicMode || currentUserEmail !== 'leo.santos.la@gmail.com') return;
+      const id = parseInt(document.getElementById('edit-hall-id').value, 10); const newDate = document.getElementById('edit-hall-date-val').value.trim();
+      const item = hallOfFame.find(h => h.id === id);
+      if (item && newDate) { item.date = newDate; saveData(); renderHallOfFame(); closeModal('edit-hall-date-modal'); showToast("📅 Data atualizada!"); }
     }
 
     function renderHallOfFame() {
       const container = document.getElementById('hall-of-fame-list'); container.innerHTML = '';
       if (hallOfFame.length === 0) { container.innerHTML = '<p style="color:var(--text-muted); font-style:italic;">Nenhum campeonato finalizado ainda.</p>'; return; }
-
       const titlesByPlayer = {}; const chronological = [...hallOfFame].reverse(); const itemTitles = {};
       chronological.forEach(item => { const champId = item.champion.id; titlesByPlayer[champId] = (titlesByPlayer[champId] || 0) + 1; itemTitles[item.id] = getTitleBadgeText(titlesByPlayer[champId]); });
-
       const canEditHallItem = !isPublicMode && currentUserEmail === 'leo.santos.la@gmail.com';
 
       hallOfFame.forEach((item) => {
@@ -1889,29 +1946,10 @@
         const isCurrentActive = item.isCurrentEdition ? `<span style="font-size:0.65rem; background:rgba(0,242,254,0.15); color:var(--cyan-neon); padding:2px 6px; border-radius:4px; margin-left:6px; border:1px solid rgba(0,242,254,0.3);">EDIÇÃO ATIVA</span>` : '';
 
         let historyActionHtml = '';
-        if (item.history) {
-            historyActionHtml = `
-              <button class="btn-history-subtle" title="Ver Histórico Completo desta Edição" onclick="viewHistory(${item.id})">
-                <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-                  <path d="M3 3v5h5"></path>
-                  <path d="M12 7v5l4 2"></path>
-                </svg>
-                <span>Histórico</span>
-              </button>
-            `;
-        } else {
-            if (canEditHallItem) {
-                historyActionHtml = `
-                  <button class="btn-history-subtle" style="border-color:var(--gold-primary); color:var(--gold-primary);" title="Criar histórico retroativo" onclick="createHistory(${item.id})">
-                       <span>+ Criar Histórico</span>
-                  </button>
-                `;
-            } else {
-                historyActionHtml = `<span style="font-size:0.75rem; color:var(--text-muted); font-style:italic;">Histórico Indisponível</span>`;
-            }
-        }
+        if (item.history) { historyActionHtml = `<button class="btn-history-subtle" title="Ver Histórico Completo desta Edição" onclick="viewHistory(${item.id})"><svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l4 2"></path></svg><span>Histórico</span></button>`; } 
+        else { if (canEditHallItem) { historyActionHtml = `<button class="btn-history-subtle" style="border-color:var(--gold-primary); color:var(--gold-primary);" title="Criar histórico retroativo" onclick="createHistory(${item.id})"><span>+ Criar Histórico</span></button>`; } else { historyActionHtml = `<span style="font-size:0.75rem; color:var(--text-muted); font-style:italic;">Histórico Indisponível</span>`; } }
 
+        const editDateBtnHtml = canEditHallItem ? `<button class="btn-icon" style="padding:4px 8px; border-radius:6px; margin-right:4px;" title="Editar Data" onclick="openEditHallDateModal(${item.id})">📅</button>` : '';
         const deleteActionHtml = canEditHallItem ? `<button class="btn-icon del" style="padding:4px 8px; border-radius:6px;" title="Excluir da Galeria" onclick="deleteHallItem(${item.id})">✖</button>` : '';
 
         container.innerHTML += `
@@ -1929,10 +1967,9 @@
                 ${item.runnerUp ? `<span style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Vice: ${item.runnerUp.name}</span>` : ''}
               </div>
             </div>
-            
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; border-top:1px solid rgba(245,175,25,0.15); padding-top:10px;" onclick="event.stopPropagation();">
               ${historyActionHtml}
-              ${deleteActionHtml}
+              <div>${editDateBtnHtml}${deleteActionHtml}</div>
             </div>
           </div>
         `;
@@ -1948,90 +1985,33 @@
       }
     }
 
-    function deleteHallItem(id) {
-      if (isPublicMode || currentUserEmail !== 'leo.santos.la@gmail.com') return;
-      if (confirm('Deseja excluir este registro da Galeria de Campeões?')) { hallOfFame = hallOfFame.filter(h => h.id !== id); saveData(); renderHallOfFame(); showToast("🗑️ Removido!"); }
-    }
+    function deleteHallItem(id) { if (isPublicMode || currentUserEmail !== 'leo.santos.la@gmail.com') return; if (confirm('Deseja excluir este registro da Galeria de Campeões?')) { hallOfFame = hallOfFame.filter(h => h.id !== id); saveData(); renderHallOfFame(); showToast("🗑️ Removido!"); } }
 
-    // ========================================================
-    // SISTEMA DE MÁQUINA DO TEMPO (HISTÓRICO)
-    // ========================================================
+    /* ========================================================
+       SISTEMA DE MÁQUINA DO TEMPO (HISTÓRICO)
+       ======================================================== */
     function viewHistory(id) {
-      const item = hallOfFame.find(h => h.id === id);
-      if (!item || !item.history) return alert("O histórico detalhado não está disponível para esta edição antiga.");
-
-      if (!isViewingHistory) {
-        backupState = {
-          players: JSON.parse(JSON.stringify(players)),
-          teams: JSON.parse(JSON.stringify(teams)),
-          matches: JSON.parse(JSON.stringify(matches)),
-          playoffData: JSON.parse(JSON.stringify(playoffData)),
-          currentChampion: currentChampion ? JSON.parse(JSON.stringify(currentChampion)) : null
-        };
-      }
-
-      players = JSON.parse(JSON.stringify(item.history.players || []));
-      matches = JSON.parse(JSON.stringify(item.history.matches || []));
-      playoffData = JSON.parse(JSON.stringify(item.history.playoffData || { semi1: null, semi2: null, final: null }));
-      
-      currentChampion = null;
-      if (item.champion) {
-         currentChampion = { champion: item.champion, team: item.team };
-      }
-
-      isViewingHistory = true;
-      currentHistoryItemId = id;
-      
-      document.getElementById('history-banner').style.display = 'flex';
-      document.getElementById('history-banner-title').innerText = `MODO HISTÓRICO: ${item.title}`;
-      
-      if (!isPublicMode && currentUserEmail === 'leo.santos.la@gmail.com') {
-        document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
-        document.querySelectorAll('.btn-draw-single, .btn-draw-final').forEach(el => el.style.display = 'inline-block');
-        document.querySelectorAll('.score-input-text, .penalty-input').forEach(input => input.removeAttribute('disabled'));
-        document.getElementById('group-stage-actions').style.display = 'flex';
-        document.getElementById('semis-actions').style.display = 'flex';
-      } else {
-        document.querySelectorAll('.admin-only').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.btn-draw-single, .btn-draw-final').forEach(el => el.style.display = 'none');
-      }
-
-      document.getElementById('btn-tab7').style.display = 'none';
-
-      refreshAllViews();
-      renderPlayers(); renderTeams(); renderRoundsNav(); renderMatches(); renderPlayoffs();
-      openTab('tab3', document.getElementById('btn-tab3'));
+      const item = hallOfFame.find(h => h.id === id); if (!item || !item.history) return alert("O histórico detalhado não está disponível para esta edição antiga.");
+      if (!isViewingHistory) { backupState = { players: JSON.parse(JSON.stringify(players)), teams: JSON.parse(JSON.stringify(teams)), matches: JSON.parse(JSON.stringify(matches)), playoffData: JSON.parse(JSON.stringify(playoffData)), currentChampion: currentChampion ? JSON.parse(JSON.stringify(currentChampion)) : null }; }
+      players = JSON.parse(JSON.stringify(item.history.players || [])); matches = JSON.parse(JSON.stringify(item.history.matches || [])); playoffData = JSON.parse(JSON.stringify(item.history.playoffData || { semi1: null, semi2: null, final: null }));
+      currentChampion = null; if (item.champion) { currentChampion = { champion: item.champion, team: item.team }; }
+      isViewingHistory = true; currentHistoryItemId = id; document.getElementById('history-banner').style.display = 'flex'; document.getElementById('history-banner-title').innerText = `MODO HISTÓRICO: ${item.title}`;
+      if (!isPublicMode && currentUserEmail === 'leo.santos.la@gmail.com') { document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden')); document.querySelectorAll('.btn-draw-single, .btn-draw-final').forEach(el => el.style.display = 'inline-block'); document.querySelectorAll('.score-input-text, .penalty-input').forEach(input => input.removeAttribute('disabled')); document.getElementById('group-stage-actions').style.display = 'flex'; document.getElementById('semis-actions').style.display = 'flex'; } else { document.querySelectorAll('.admin-only').forEach(el => el.classList.add('hidden')); document.querySelectorAll('.btn-draw-single, .btn-draw-final').forEach(el => el.style.display = 'none'); }
+      document.getElementById('btn-tab7').style.display = 'none'; refreshAllViews(); renderPlayers(); renderTeams(); renderRoundsNav(); renderMatches(); renderPlayoffs(); openTab('tab3', document.getElementById('btn-tab3'));
     }
 
     function exitHistoryMode() {
       if (!backupState) return;
-
-      players = backupState.players;
-      teams = backupState.teams || teams;
-      matches = backupState.matches;
-      playoffData = backupState.playoffData;
-      currentChampion = backupState.currentChampion;
-      
-      isViewingHistory = false;
-      currentHistoryItemId = null;
-      document.getElementById('history-banner').style.display = 'none';
-
-      if (!isPublicMode) {
-        document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
-      }
-
-      document.getElementById('btn-tab7').style.display = '';
-
-      refreshAllViews();
-      renderPlayers(); renderTeams(); renderRoundsNav(); renderMatches(); renderPlayoffs();
-      openTab('tab7', document.getElementById('btn-tab7'));
+      players = backupState.players; teams = backupState.teams || teams; matches = backupState.matches; playoffData = backupState.playoffData; currentChampion = backupState.currentChampion;
+      isViewingHistory = false; currentHistoryItemId = null; document.getElementById('history-banner').style.display = 'none';
+      if (!isPublicMode) { document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden')); }
+      document.getElementById('btn-tab7').style.display = ''; refreshAllViews(); renderPlayers(); renderTeams(); renderRoundsNav(); renderMatches(); renderPlayoffs(); openTab('tab7', document.getElementById('btn-tab7'));
     }
 
     async function resetCurrentChampionship() {
       if (isPublicMode || isViewingHistory) return;
       if (confirm('Deseja resetar o campeonato atual? As partidas e placares serão limpos. (A galeria de campeões e seus históricos serão mantidos e a edição atual será fechada).')) {
-        matches = []; playoffData = { semi1: null, semi2: null, final: null }; currentChampion = null;
-        hallOfFame.forEach(h => h.isCurrentEdition = false);
+        matches = []; playoffData = { semi1: null, semi2: null, final: null }; currentChampion = null; hallOfFame.forEach(h => h.isCurrentEdition = false);
         players = JSON.parse(JSON.stringify(masterPlayers)); teams = JSON.parse(JSON.stringify(masterTeams));
         document.getElementById('campeao-nome').innerText = '?'; document.getElementById('header-champion-card').classList.remove('crowned');
         await saveData(); renderPlayers(); renderTeams(); renderRoundsNav(); renderMatches(); renderPlayoffs(); refreshAllViews(); showToast("🔄 Campeonato resetado!");

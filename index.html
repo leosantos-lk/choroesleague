@@ -184,8 +184,8 @@
     .header-actions-container { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
     h2 { font-family: 'Orbitron', sans-serif; color: var(--gold-primary); font-size: 1.4rem; letter-spacing: 1px; text-shadow: 0 0 10px var(--gold-glow); margin-bottom: 0; }
     .form-group { display: flex; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; align-items: center; }
-    input[type="text"] { background: #000; border: 1px solid var(--border-gold); color: var(--text-white); padding: 12px 16px; border-radius: 8px; outline: none; flex: 1; min-width: 180px; font-size: 1rem; font-weight: 600; box-shadow: inset 0 2px 5px rgba(0,0,0,0.8); transition: all 0.3s; }
-    input[type="text"]:focus { border-color: var(--gold-primary); box-shadow: 0 0 12px var(--gold-glow), inset 0 2px 5px rgba(0,0,0,0.8); }
+    input[type="text"], input[type="number"] { background: #000; border: 1px solid var(--border-gold); color: var(--text-white); padding: 12px 16px; border-radius: 8px; outline: none; flex: 1; min-width: 180px; font-size: 1rem; font-weight: 600; box-shadow: inset 0 2px 5px rgba(0,0,0,0.8); transition: all 0.3s; }
+    input[type="text"]:focus, input[type="number"]:focus { border-color: var(--gold-primary); box-shadow: 0 0 12px var(--gold-glow), inset 0 2px 5px rgba(0,0,0,0.8); }
     input[type="file"] { display: none; }
     .file-label { background: linear-gradient(145deg, #151520, #08080c); border: 1px solid var(--border-gold); color: var(--text-muted); padding: 12px 16px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: all 0.3s; }
     .file-label:hover { border-color: var(--gold-primary); color: #fff; transform: translateY(-2px); }
@@ -769,7 +769,8 @@
     <div id="tab2" class="tab-content admin-only">
       <h2>Times Cadastrados</h2>
       <div class="form-group admin-only" style="margin-top:15px;">
-        <input type="text" id="t-name" placeholder="Nome do time...">
+        <input type="text" id="t-name" placeholder="Nome do time..." style="flex:2;">
+        <input type="number" id="t-rating" placeholder="Rating (Ex: 85)" min="1" max="99" style="flex:1;">
         <label class="file-label" for="t-img">🛡️ Escudo PNG <input type="file" id="t-img" accept="image/png, image/jpeg, image/*" onchange="previewFileName('t-img', 't-img-label')"></label>
         <span id="t-img-label" style="font-size:0.8rem; color:var(--cyan-neon);"></span>
         <button class="btn-action" onclick="addTeam()">Adicionar Time</button>
@@ -864,6 +865,7 @@
       <div class="modal">
         <h3>Editar Time</h3><input type="hidden" id="edit-t-id">
         <div style="margin-bottom: 12px;"><label style="font-size:0.85rem; color:var(--text-muted);">Nome do Time:</label><input type="text" id="edit-t-name" style="width:100%; margin-top:4px;"></div>
+        <div style="margin-bottom: 12px;"><label style="font-size:0.85rem; color:var(--text-muted);">Rating Geral (Força):</label><input type="number" id="edit-t-rating" style="width:100%; margin-top:4px;" min="1" max="99"></div>
         <div style="margin-bottom: 20px;"><label style="font-size:0.85rem; color:var(--text-muted);">Novo Escudo PNG:</label><br><label class="file-label" for="edit-t-img" style="margin-top:6px;">🛡️ Alterar Escudo PNG <input type="file" id="edit-t-img" accept="image/png, image/jpeg, image/*" onchange="previewFileName('edit-t-img', 'edit-t-img-label')"></label><span id="edit-t-img-label" style="font-size:0.8rem; color:var(--cyan-neon);"></span></div>
         <div style="display:flex; justify-content:flex-end; gap:10px;"><button class="btn-action" style="background:#333; color:#fff;" onclick="closeModal('edit-team-modal')">Cancelar</button><button class="btn-action" onclick="saveTeamEdit()">Salvar</button></div>
       </div>
@@ -1046,18 +1048,18 @@
     ];
 
     const DEFAULT_TEAMS = [
-      { id: 1, name: 'Atlético de Madrid', img: 'https://upload.wikimedia.org/wikipedia/en/c/c1/Atletico_Madrid_logo.svg' },
-      { id: 2, name: 'Chelsea', img: 'https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg' },
-      { id: 3, name: 'AC Milan', img: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Escudo_ac_milan_%281990s%29.png' },
-      { id: 4, name: 'Manchester City', img: 'https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg' },
-      { id: 5, name: 'Arsenal', img: 'https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg' },
-      { id: 6, name: 'Liverpool', img: 'https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg' },
-      { id: 7, name: 'Real Madrid', img: 'https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg' },
-      { id: 8, name: 'Barcelona', img: 'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg' },
-      { id: 9, name: 'Bayern de Munique', img: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg' },
-      { id: 10, name: 'PSG', img: 'https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg' },
-      { id: 11, name: 'Inter de Milão', img: 'https://upload.wikimedia.org/wikipedia/commons/0/05/FC_Internazionale_Milano_2021.svg' },
-      { id: 12, name: 'Manchester United', img: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg' }
+      { id: 1, name: 'Atlético de Madrid', rating: 84, img: 'https://upload.wikimedia.org/wikipedia/en/c/c1/Atletico_Madrid_logo.svg' },
+      { id: 2, name: 'Real Madrid', rating: 90, img: 'https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg' },
+      { id: 3, name: 'Barcelona', rating: 89, img: 'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg' },
+      { id: 4, name: 'Arsenal', rating: 88, img: 'https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg' },
+      { id: 5, name: 'Chelsea', rating: 85, img: 'https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg' },
+      { id: 6, name: 'Manchester City', rating: 90, img: 'https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg' },
+      { id: 7, name: 'Manchester United', rating: 83, img: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg' },
+      { id: 8, name: 'Liverpool', rating: 86, img: 'https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg' },
+      { id: 9, name: 'Bayern de Munique', rating: 86, img: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg' },
+      { id: 10, name: 'PSG', rating: 90, img: 'https://upload.wikimedia.org/wikipedia/en/a/a7/Paris_Saint-Germain_F.C..svg' },
+      { id: 11, name: 'AC Milan', rating: 83, img: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Escudo_ac_milan_%281990s%29.png' },
+      { id: 12, name: 'Inter de Milão', rating: 85, img: 'https://upload.wikimedia.org/wikipedia/commons/0/05/FC_Internazionale_Milano_2021.svg' }
     ];
 
     let masterPlayers = JSON.parse(JSON.stringify(DEFAULT_PLAYERS)); 
@@ -1066,7 +1068,7 @@
     let playoffData = { semi1: null, semi2: null, final: null };
     let hallOfFame = []; let currentChampion = null;
     
-    const STORAGE_KEY = 'liga-choroes-data-v20';
+    const STORAGE_KEY = 'liga-choroes-data-v21'; // Modificado versão para refletir alteração dos ratings
 
     function getTitleBadgeText(count) {
       if (count <= 1) return "CAMPEÃO";
@@ -1279,9 +1281,11 @@
     
     function addTeam() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
-      const name = document.getElementById('t-name').value.trim(); const imgInput = document.getElementById('t-img');
+      const name = document.getElementById('t-name').value.trim(); 
+      const rating = parseInt(document.getElementById('t-rating').value) || 85; 
+      const imgInput = document.getElementById('t-img');
       if (!name) return alert('Digite o nome do time.');
-      const createAndSave = (imgSrc) => { const newT = { id: Date.now(), name: name, img: imgSrc }; teams.push(newT); masterTeams.push(newT); document.getElementById('t-name').value = ''; imgInput.value = ''; document.getElementById('t-img-label').innerText = ''; saveData(); renderTeams(); showToast("🛡️ Adicionado!"); };
+      const createAndSave = (imgSrc) => { const newT = { id: Date.now(), name: name, rating: rating, img: imgSrc }; teams.push(newT); masterTeams.push(newT); document.getElementById('t-name').value = ''; document.getElementById('t-rating').value = ''; imgInput.value = ''; document.getElementById('t-img-label').innerText = ''; saveData(); renderTeams(); showToast("🛡️ Adicionado!"); };
       if (imgInput.files && imgInput.files[0]) { const r = new FileReader(); r.onload = (e) => createAndSave(e.target.result); r.readAsDataURL(imgInput.files[0]); } else { createAndSave(`https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(name)}`); }
     }
     
@@ -1289,17 +1293,34 @@
       const container = document.getElementById('teams-list'); container.innerHTML = '';
       const canEdit = !isPublicMode && (!isViewingHistory || currentUserEmail === 'leo.santos.la@gmail.com');
       teams.forEach(t => {
+        const ratingVal = t.rating || 85;
         const actionsHtml = !canEdit ? '' : `<div class="card-actions"><button class="btn-icon" title="Editar" onclick="openTeamEditModal(${t.id})">✏️</button><button class="btn-icon del" title="Excluir" onclick="removeTeam(${t.id})">✖</button></div>`;
-        container.innerHTML += `<div class="item-card"><div class="item-info"><img src="${t.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(t.name)}'"><span class="name">${t.name}</span></div>${actionsHtml}</div>`;
+        container.innerHTML += `<div class="item-card"><div class="item-info"><img src="${t.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(t.name)}'"><span class="name">${t.name} <small style="color:var(--gold-primary)">(${ratingVal})</small></span></div>${actionsHtml}</div>`;
       });
       document.getElementById('total-times').innerText = teams.length;
     }
 
-    function openTeamEditModal(id) { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; const t = teams.find(x => x.id === id); if(!t) return; document.getElementById('edit-t-id').value = t.id; document.getElementById('edit-t-name').value = t.name; document.getElementById('edit-t-img-label').innerText = ''; document.getElementById('edit-team-modal').classList.add('active'); document.body.classList.add('modal-open'); }
+    function openTeamEditModal(id) { 
+        if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; 
+        const t = teams.find(x => x.id === id); if(!t) return; 
+        document.getElementById('edit-t-id').value = t.id; 
+        document.getElementById('edit-t-name').value = t.name; 
+        document.getElementById('edit-t-rating').value = t.rating || 85;
+        document.getElementById('edit-t-img-label').innerText = ''; 
+        document.getElementById('edit-team-modal').classList.add('active'); 
+        document.body.classList.add('modal-open'); 
+    }
+
     function saveTeamEdit() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
-      const id = parseInt(document.getElementById('edit-t-id').value); const newName = document.getElementById('edit-t-name').value.trim(); const imgInput = document.getElementById('edit-t-img'); const t = teams.find(x => x.id === id);
-      if(!t || !newName) return alert('O nome é obrigatório!'); t.name = newName; const mt = masterTeams.find(x => x.id === id); if(mt) mt.name = newName;
+      const id = parseInt(document.getElementById('edit-t-id').value); 
+      const newName = document.getElementById('edit-t-name').value.trim(); 
+      const newRating = parseInt(document.getElementById('edit-t-rating').value) || 85;
+      const imgInput = document.getElementById('edit-t-img'); 
+      const t = teams.find(x => x.id === id);
+      if(!t || !newName) return alert('O nome é obrigatório!'); 
+      t.name = newName; t.rating = newRating;
+      const mt = masterTeams.find(x => x.id === id); if(mt) { mt.name = newName; mt.rating = newRating; }
       if (imgInput.files && imgInput.files[0]) { const r = new FileReader(); r.onload = (e) => { t.img = e.target.result; if(mt) mt.img = e.target.result; saveData(); renderTeams(); closeModal('edit-team-modal'); }; r.readAsDataURL(imgInput.files[0]); } else { saveData(); renderTeams(); closeModal('edit-team-modal'); }
     }
     function removeTeam(id) { if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return; teams = teams.filter(x => x.id !== id); saveData(); renderTeams(); }
@@ -1343,19 +1364,45 @@
     }
 
     /* ========================================================
-        3. ALGORITMO DE SORTEIO EQUILIBRADO DE TIMES
+        3. ALGORITMO DE SORTEIO EQUILIBRADO DE TIMES (COM OVERALL)
        ======================================================== */
-    function getBalancedTeamDraw(player, excludeTeamId = null) {
+    function getBalancedTeamDraw(player, opponentTeam = null) {
       if (!teams || teams.length === 0) return null;
       if (teams.length === 1) return teams[0];
+      
       const teamUsage = {}; teams.forEach(t => teamUsage[t.id] = 0);
       matches.forEach(m => { if (m.team1) teamUsage[m.team1.id] = (teamUsage[m.team1.id] || 0) + 1; if (m.team2) teamUsage[m.team2.id] = (teamUsage[m.team2.id] || 0) + 1; });
       if (playoffData) { ['semi1', 'semi2', 'final'].forEach(s => { if (playoffData[s]) { if (playoffData[s].team1) teamUsage[playoffData[s].team1.id] = (teamUsage[playoffData[s].team1.id] || 0) + 1; if (playoffData[s].team2) teamUsage[playoffData[s].team2.id] = (teamUsage[playoffData[s].team2.id] || 0) + 1; } }); }
+      
       const playerTeamUsage = {};
       if (player && player.id) { matches.forEach(m => { if (m.p1 && m.p1.id === player.id && m.team1) playerTeamUsage[m.team1.id] = (playerTeamUsage[m.team1.id] || 0) + 1; if (m.p2 && m.p2.id === player.id && m.team2) playerTeamUsage[m.team2.id] = (playerTeamUsage[m.team2.id] || 0) + 1; }); }
-      const candidateTeams = teams.filter(t => t.id !== excludeTeamId);
-      const weightedCandidates = candidateTeams.map(t => { const globalUses = teamUsage[t.id] || 0; const playerUses = playerTeamUsage[t.id] || 0; let weight = 1000 / ((globalUses * 1.2 + 1) * (playerUses * 1.5 + 1)); weight += Math.random() * 25; return { team: t, weight: Math.max(weight, 1) }; });
-      const totalWeight = weightedCandidates.reduce((sum, c) => sum + c.weight, 0); let randomVal = Math.random() * totalWeight;
+      
+      const candidateTeams = opponentTeam ? teams.filter(t => t.id !== opponentTeam.id) : teams;
+      
+      const weightedCandidates = candidateTeams.map(t => { 
+        const globalUses = teamUsage[t.id] || 0; 
+        const playerUses = playerTeamUsage[t.id] || 0; 
+        
+        // --- NOVA LÓGICA DE RATING PROXIMITY ---
+        let ratingMultiplier = 1.0;
+        if (opponentTeam) {
+            const myRating = t.rating || 85;
+            const oppRating = opponentTeam.rating || 85;
+            const diff = Math.abs(myRating - oppRating);
+            
+            if (diff <= 2) ratingMultiplier = 2.5;       // Diferença 0-2 (Muito equilibrado)
+            else if (diff <= 4) ratingMultiplier = 1.2;  // Diferença 3-4 (Aceitável)
+            else if (diff <= 6) ratingMultiplier = 0.5;  // Diferença 5-6 (Evitar se possível)
+            else ratingMultiplier = 0.1;                 // Diferença > 6 (Muito raro)
+        }
+
+        let weight = (1000 / ((globalUses * 1.2 + 1) * (playerUses * 1.5 + 1))) * ratingMultiplier;
+        weight += Math.random() * 25; 
+        return { team: t, weight: Math.max(weight, 1) }; 
+      });
+      
+      const totalWeight = weightedCandidates.reduce((sum, c) => sum + c.weight, 0); 
+      let randomVal = Math.random() * totalWeight;
       for (let c of weightedCandidates) { if (randomVal < c.weight) return c.team; randomVal -= c.weight; }
       return candidateTeams[Math.floor(Math.random() * candidateTeams.length)];
     }
@@ -1364,14 +1411,21 @@
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       if (teams.length < 2) return alert('Cadastre pelo menos 2 times!');
       const match = matches.find(m => m.id === matchId); if (!match) return;
-      const t1 = getBalancedTeamDraw(match.p1); const t2 = getBalancedTeamDraw(match.p2, t1 ? t1.id : null);
+      
+      const t1 = getBalancedTeamDraw(match.p1); 
+      const t2 = getBalancedTeamDraw(match.p2, t1); // Envia o time inteiro para balancear
+      
       match.team1 = t1; match.team2 = t2; saveData(); renderMatches();
     }
 
     function drawAllTeams() {
       if (isPublicMode || (isViewingHistory && currentUserEmail !== 'leo.santos.la@gmail.com')) return;
       if (teams.length < 2) return alert('Cadastre pelo menos 2 times!'); if (matches.length === 0) return alert('Gere o chaveamento primeiro.');
-      matches.forEach(m => { const t1 = getBalancedTeamDraw(m.p1); const t2 = getBalancedTeamDraw(m.p2, t1 ? t1.id : null); m.team1 = t1; m.team2 = t2; });
+      matches.forEach(m => { 
+          const t1 = getBalancedTeamDraw(m.p1); 
+          const t2 = getBalancedTeamDraw(m.p2, t1); 
+          m.team1 = t1; m.team2 = t2; 
+      });
       saveData(); renderMatches();
     }
 
@@ -1382,8 +1436,8 @@
       const filtered = selectedRound === 0 ? matches : matches.filter(m => m.round === selectedRound); let currentGroup = -1;
       filtered.forEach(m => {
         if (selectedRound === 0 && m.round !== currentGroup) { currentGroup = m.round; container.innerHTML += `<h3 style="font-family:'Orbitron',sans-serif; color:var(--gold-primary); margin: 18px 0 10px 0; font-size:1.1rem; border-left:3px solid var(--gold-primary); padding-left:8px;">Rodada ${m.round}</h3>`; }
-        const t1Display = m.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${m.team1.img}"> ${m.team1.name}</span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>';
-        const t2Display = m.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${m.team2.img}"> ${m.team2.name}</span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>';
+        const t1Display = m.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${m.team1.img}"> ${m.team1.name} <small style="color:var(--gold-primary)">(${m.team1.rating || 85})</small></span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>';
+        const t2Display = m.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${m.team2.img}"> ${m.team2.name} <small style="color:var(--gold-primary)">(${m.team2.rating || 85})</small></span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>';
         const w1Tag = m.team1 ? `<img class="club-watermark" style="left: -10px;" src="${m.team1.img}" alt="" onerror="this.style.display='none'">` : '';
         const w2Tag = m.team2 ? `<img class="club-watermark" style="right: -10px;" src="${m.team2.img}" alt="" onerror="this.style.display='none'">` : '';
         const footerActionHtml = isLocked ? '' : `<button class="btn-draw-single" onclick="drawMatchTeam(${m.id})">🎲 Sortear Times deste Jogo</button>`;
@@ -1677,7 +1731,7 @@
       if (teams.length < 2) return alert('Cadastre times!'); const match = playoffData[stage]; if (!match || !match.p1 || !match.p2) return alert('Participantes não definidos.');
       
       const t1 = getBalancedTeamDraw(match.p1);
-      const t2 = getBalancedTeamDraw(match.p2, t1 ? t1.id : null);
+      const t2 = getBalancedTeamDraw(match.p2, t1); // Envia o oponente para balancear o overall
       const stageTitle = stage === 'final' ? ' - GRANDE FINAL - ' : (stage === 'semi1' ? 'Semifinal 1' : 'Semifinal 2');
       
       await playRouletteAnimation(stageTitle, t1, t2, match.p1.name, match.p2.name, stage);
@@ -1694,7 +1748,7 @@
           const match = playoffData[stage];
           if (match && match.p1 && match.p2) { 
               const t1 = getBalancedTeamDraw(match.p1);
-              const t2 = getBalancedTeamDraw(match.p2, t1 ? t1.id : null);
+              const t2 = getBalancedTeamDraw(match.p2, t1); // Envia o oponente para balancear o overall
               
               await playRouletteAnimation(stage === 'semi1' ? 'Semifinal 1' : 'Semifinal 2', t1, t2, match.p1.name, match.p2.name, stage);
               match.team1 = t1; match.team2 = t2; 
@@ -1738,17 +1792,17 @@
       sContainer.innerHTML = `
         <div id="match-card-semi1" class="match-card">
           <div class="match-main">
-            <div class="team-box">${s1w1}<img class="player-avatar" src="${playoffData.semi1.p1.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(playoffData.semi1.p1.name)}'"><div style="min-width:0;"><span class="player-title">${playoffData.semi1.p1.name} <small style="color:var(--gold-primary)">(1º)</small></span>${playoffData.semi1.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${playoffData.semi1.team1.img}"> ${playoffData.semi1.team1.name}</span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>'}</div></div>
+            <div class="team-box">${s1w1}<img class="player-avatar" src="${playoffData.semi1.p1.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(playoffData.semi1.p1.name)}'"><div style="min-width:0;"><span class="player-title">${playoffData.semi1.p1.name} <small style="color:var(--gold-primary)">(1º)</small></span>${playoffData.semi1.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${playoffData.semi1.team1.img}"> ${playoffData.semi1.team1.name} <small style="color:var(--gold-primary)">(${playoffData.semi1.team1.rating || 85})</small></span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>'}</div></div>
             <div class="score-container"><div class="score-row"><input type="text" inputmode="numeric" class="score-input-text" value="${playoffData.semi1.score1}" placeholder="0" ${disabledAttr} onchange="updateScoreFromInput(this, null, 1, true, 'semi1')"><span class="score-vs">X</span><input type="text" inputmode="numeric" class="score-input-text" value="${playoffData.semi1.score2}" placeholder="0" ${disabledAttr} onchange="updateScoreFromInput(this, null, 2, true, 'semi1')"></div>${renderPenaltyRow(playoffData.semi1, 'semi1')}</div>
-            <div class="team-box right">${s1w2}<div style="min-width:0;"><span class="player-title">${playoffData.semi1.p2.name} <small style="color:var(--gold-primary)">(4º)</small></span>${playoffData.semi1.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${playoffData.semi1.team2.img}"> ${playoffData.semi1.team2.name}</span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>'}</div><img class="player-avatar" src="${playoffData.semi1.p2.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(playoffData.semi1.p2.name)}'"></div>
+            <div class="team-box right">${s1w2}<div style="min-width:0;"><span class="player-title">${playoffData.semi1.p2.name} <small style="color:var(--gold-primary)">(4º)</small></span>${playoffData.semi1.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${playoffData.semi1.team2.img}"> ${playoffData.semi1.team2.name} <small style="color:var(--gold-primary)">(${playoffData.semi1.team2.rating || 85})</small></span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>'}</div><img class="player-avatar" src="${playoffData.semi1.p2.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(playoffData.semi1.p2.name)}'"></div>
           </div>
           <div class="match-footer">${semi1Footer}</div>
         </div>
         <div id="match-card-semi2" class="match-card">
           <div class="match-main">
-            <div class="team-box">${s2w1}<img class="player-avatar" src="${playoffData.semi2.p1.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(playoffData.semi2.p1.name)}'"><div style="min-width:0;"><span class="player-title">${playoffData.semi2.p1.name} <small style="color:var(--gold-primary)">(2º)</small></span>${playoffData.semi2.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${playoffData.semi2.team1.img}"> ${playoffData.semi2.team1.name}</span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>'}</div></div>
+            <div class="team-box">${s2w1}<img class="player-avatar" src="${playoffData.semi2.p1.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(playoffData.semi2.p1.name)}'"><div style="min-width:0;"><span class="player-title">${playoffData.semi2.p1.name} <small style="color:var(--gold-primary)">(2º)</small></span>${playoffData.semi2.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${playoffData.semi2.team1.img}"> ${playoffData.semi2.team1.name} <small style="color:var(--gold-primary)">(${playoffData.semi2.team1.rating || 85})</small></span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>'}</div></div>
             <div class="score-container"><div class="score-row"><input type="text" inputmode="numeric" class="score-input-text" value="${playoffData.semi2.score1}" placeholder="0" ${disabledAttr} onchange="updateScoreFromInput(this, null, 1, true, 'semi2')"><span class="score-vs">X</span><input type="text" inputmode="numeric" class="score-input-text" value="${playoffData.semi2.score2}" placeholder="0" ${disabledAttr} onchange="updateScoreFromInput(this, null, 2, true, 'semi2')"></div>${renderPenaltyRow(playoffData.semi2, 'semi2')}</div>
-            <div class="team-box right">${s2w2}<div style="min-width:0;"><span class="player-title">${playoffData.semi2.p2.name} <small style="color:var(--gold-primary)">(3º)</small></span>${playoffData.semi2.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${playoffData.semi2.team2.img}"> ${playoffData.semi2.team2.name}</span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>'}</div><img class="player-avatar" src="${playoffData.semi2.p2.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(playoffData.semi2.p2.name)}'"></div>
+            <div class="team-box right">${s2w2}<div style="min-width:0;"><span class="player-title">${playoffData.semi2.p2.name} <small style="color:var(--gold-primary)">(3º)</small></span>${playoffData.semi2.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${playoffData.semi2.team2.img}"> ${playoffData.semi2.team2.name} <small style="color:var(--gold-primary)">(${playoffData.semi2.team2.rating || 85})</small></span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>'}</div><img class="player-avatar" src="${playoffData.semi2.p2.img}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(playoffData.semi2.p2.name)}'"></div>
           </div>
           <div class="match-footer">${semi2Footer}</div>
         </div>
@@ -1763,9 +1817,9 @@
         <div id="match-card-final" class="match-card final-epic-card">
           <div class="final-bg-watermark">FINAL</div>
           <div class="match-main">
-            <div class="team-box">${fw1}<img class="player-avatar" src="${f1 ? f1.img : 'https://api.dicebear.com/7.x/bottts/svg?seed=F1'}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=F1'"><div style="min-width:0;"><span class="player-title">${f1 ? f1.name : 'Vencedor Semi 1'}</span>${playoffData.final && playoffData.final.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${playoffData.final.team1.img}"> ${playoffData.final.team1.name}</span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>'}</div></div>
+            <div class="team-box">${fw1}<img class="player-avatar" src="${f1 ? f1.img : 'https://api.dicebear.com/7.x/bottts/svg?seed=F1'}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=F1'"><div style="min-width:0;"><span class="player-title">${f1 ? f1.name : 'Vencedor Semi 1'}</span>${playoffData.final && playoffData.final.team1 ? `<span class="team-assigned"><img class="team-badge-sm" src="${playoffData.final.team1.img}"> ${playoffData.final.team1.name} <small style="color:var(--gold-primary)">(${playoffData.final.team1.rating || 85})</small></span>` : '<span class="team-assigned" style="color:var(--text-muted)">Sem time</span>'}</div></div>
             <div class="score-container"><div class="score-row"><input type="text" inputmode="numeric" class="score-input-text" value="${playoffData.final ? playoffData.final.score1 : ''}" placeholder="0" ${!f1 || !f2 || isLocked ? 'disabled' : ''} onchange="updateScoreFromInput(this, null, 1, true, 'final')"><span class="score-vs" style="font-size:1.1rem; color:var(--gold-primary)">🏆</span><input type="text" inputmode="numeric" class="score-input-text" value="${playoffData.final ? playoffData.final.score2 : ''}" placeholder="0" ${!f1 || !f2 || isLocked ? 'disabled' : ''} onchange="updateScoreFromInput(this, null, 2, true, 'final')"></div>${playoffData.final ? renderPenaltyRow(playoffData.final, 'final') : ''}</div>
-            <div class="team-box right">${fw2}<div style="min-width:0;"><span class="player-title">${f2 ? f2.name : 'Vencedor Semi 2'}</span>${playoffData.final && playoffData.final.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${playoffData.final.team2.img}"> ${playoffData.final.team2.name}</span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>'}</div><img class="player-avatar" src="${f2 ? f2.img : 'https://api.dicebear.com/7.x/bottts/svg?seed=F2'}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=F2'"></div>
+            <div class="team-box right">${fw2}<div style="min-width:0;"><span class="player-title">${f2 ? f2.name : 'Vencedor Semi 2'}</span>${playoffData.final && playoffData.final.team2 ? `<span class="team-assigned right"><img class="team-badge-sm" src="${playoffData.final.team2.img}"> ${playoffData.final.team2.name} <small style="color:var(--gold-primary)">(${playoffData.final.team2.rating || 85})</small></span>` : '<span class="team-assigned right" style="color:var(--text-muted)">Sem time</span>'}</div><img class="player-avatar" src="${f2 ? f2.img : 'https://api.dicebear.com/7.x/bottts/svg?seed=F2'}" onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/bottts/svg?seed=F2'"></div>
           </div>
           <div class="match-footer" style="justify-content: center; position: relative; z-index: 2; margin-top: 15px; border-top: none;">${finalFooter}</div>
         </div>
